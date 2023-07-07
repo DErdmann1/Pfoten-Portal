@@ -2,10 +2,13 @@ import React from "react";
 import dogs from "../lib/data";
 import List from "../components/index.js";
 
-export default function HomePage() {
+const DogsPage = () => {
   return (
     <div>
       <h1>🐾 PfotenPortal 🐾</h1>
+      <List items={dogs} />
     </div>
   );
-}
+};
+
+export default DogsPage;
