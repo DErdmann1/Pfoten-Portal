@@ -1,6 +1,6 @@
 import React from "react";
 import dogs from "../lib/data";
-import List from "../components/index.js";
+import List from "../components/animallist/index.js";
 
 const DogsPage = () => {
   return (
