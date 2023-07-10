@@ -1,7 +1,11 @@
+import React from "react";
+import Link from "next/link";
+
 export default function HomePage() {
   return (
-    <div>
-      <h1>Hello from Next.js</h1>
-    </div>
+    <main>
+      <h1>🐾 PfotenPortal 🐾</h1>
+      <Link href="/animals">Zur Pfotenseite </Link>
+    </main>
   );
 }
