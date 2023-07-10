@@ -1,14 +1,14 @@
 import React from "react";
 import dogs from "../lib/data";
-import List from "../components/animallist/index.js";
+import List from "../components/Animallist/index.js";
 
-const DogsPage = () => {
+function DogsPage() {
   return (
-    <div>
+    <main>
       <h1>🐾 PfotenPortal 🐾</h1>
       <List items={dogs} />
-    </div>
+    </main>
   );
-};
+}
 
 export default DogsPage;
