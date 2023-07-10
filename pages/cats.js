@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import List from "../components/Catlist/index.js";
-import cats from "../lib/cats_data.js";
+import cats from "../lib/cat_data.js";
 
 function AnimalsPage() {
   const [filteredItems, setFilteredItems] = useState(cats);
