@@ -1,6 +1,6 @@
 import React from "react";
 
-function List({ items }) {
+export default function List({ items }) {
   return (
     <ul>
       {items.map((item) => (
@@ -16,5 +16,3 @@ function List({ items }) {
     </ul>
   );
 }
-
-export default List;
