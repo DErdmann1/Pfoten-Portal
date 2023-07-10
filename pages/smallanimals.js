@@ -7,6 +7,7 @@ function AnimalsPage() {
   const [ageFilter, setAgeFilter] = useState("");
   const [genderFilter, setGenderFilter] = useState("");
   const [speciesFilter, setSpeciesFilter] = useState("");
+  const [locationFilter, setLocationFilter] = useState("");
 
   const handleFilter = () => {
     const filteredList = smallanimals.filter((item) => {
