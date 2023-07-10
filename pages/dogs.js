@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import List from "../components/Doglist/index.js";
-import animals from "../lib/data.js";
+import animals from "../lib/dog_data.js";
 
 function AnimalsPage() {
   const [filteredItems, setFilteredItems] = useState(animals);
@@ -9,7 +9,7 @@ function AnimalsPage() {
   const [speciesFilter, setSpeciesFilter] = useState("");
 
   const handleFilter = () => {
-    const filteredList = animals.filter((item) => {
+    const filteredList = dogs.filter((item) => {
       if (genderFilter && item.gender !== genderFilter) {
         return false;
       }
@@ -34,7 +34,6 @@ function AnimalsPage() {
   return (
     <main>
       <h1>🐾 PfotenPortal 🐾</h1>
-
       <div>
         <label htmlFor="ageFilter">Alter:</label>
         <select

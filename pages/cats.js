@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import List from "../components/Doglist/index.js";
-import animals from "../lib/data.js";
+import animals from "../lib/dog_data.js";
 
 function AnimalsPage() {
   const [filteredItems, setFilteredItems] = useState(animals);
