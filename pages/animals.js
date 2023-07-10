@@ -1,6 +1,6 @@
 import React from "react";
 import dogs from "../lib/data";
-import List from "../components/Superanimallist/index.js";
+import List from "../components/Animallist/index.js";
 
 function DogsPage() {
   return (
