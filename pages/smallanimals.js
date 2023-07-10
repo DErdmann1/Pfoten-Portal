@@ -62,6 +62,18 @@ function AnimalsPage() {
         </select>
       </div>
 
+      <div>
+        <label htmlFor="locationFilter">Standort:</label>
+        <select
+          id="locationFilter"
+          value={locationFilter}
+          onChange={(e) => setLocationFilter(e.target.value)}
+        >
+          <option value="">Alle</option>
+          <option value="Bereits in Deutschland">Bereits in Deutschland</option>
+        </select>
+      </div>
+
       <button onClick={handleFilter}>Filter anwenden</button>
 
       <List items={filteredItems} />

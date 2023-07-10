@@ -7,6 +7,7 @@ function AnimalsPage() {
   const [ageFilter, setAgeFilter] = useState("");
   const [genderFilter, setGenderFilter] = useState("");
   const [speciesFilter, setSpeciesFilter] = useState("");
+  const [locationFilter, setLocationFilter] = useState("");
 
   const handleFilter = () => {
     const filteredList = dogs.filter((item) => {
@@ -24,7 +25,9 @@ function AnimalsPage() {
           return false;
         }
       }
-
+      if (locationFilter && item.location !== locationFilter) {
+        return false;
+      }
       return true;
     });
 
@@ -58,6 +61,19 @@ function AnimalsPage() {
           <option value="">Alle</option>
           <option value="weiblich">Weiblich</option>
           <option value="männlich">Männlich</option>
+        </select>
+      </div>
+      <div>
+        <label htmlFor="locationFilter">Standort:</label>
+        <select
+          id="locationFilter"
+          value={locationFilter}
+          onChange={(e) => setLocationFilter(e.target.value)}
+        >
+          <option value="">Alle</option>
+          <option value="Berlin">Berlin</option>
+          <option value="München">München</option>
+          {/* Füge weitere Standorte hinzu */}
         </select>
       </div>
 
