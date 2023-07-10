@@ -1,6 +1,6 @@
-import React from "react";
-import List from "../components/Animallist/index.js";
-import animals from "../lib/data/animals";
+import React, { useState } from "react";
+import List from "../components/Doglist/index.js";
+import animals from "../lib/data.js";
 
 function AnimalsPage() {
   const [filteredItems, setFilteredItems] = useState(animals);
@@ -9,7 +9,7 @@ function AnimalsPage() {
   const [speciesFilter, setSpeciesFilter] = useState("");
 
   const handleFilter = () => {
-    const filteredList = dogs.filter((item) => {
+    const filteredList = animals.filter((item) => {
       if (genderFilter && item.gender !== genderFilter) {
         return false;
       }
@@ -17,15 +17,15 @@ function AnimalsPage() {
       if (ageFilter) {
         const age = parseInt(item.age);
         if (ageFilter === "0-5" && (age < 0 || age > 5)) {
-          return false; // Überspringe das Item, wenn das Alter nicht im Bereich von 0-5 liegt
+          return false;
         } else if (ageFilter === "6-10" && (age < 6 || age > 10)) {
-          return false; // Überspringe das Item, wenn das Alter nicht im Bereich von 6-10 liegt
+          return false;
         } else if (ageFilter === "10+" && age < 11) {
-          return false; // Überspringe das Item, wenn das Alter kleiner als 11 ist
+          return false;
         }
       }
 
-      return true; // Das Item entspricht allen ausgewählten Filterkriterien
+      return true;
     });
 
     setFilteredItems(filteredList);
@@ -37,22 +37,29 @@ function AnimalsPage() {
 
       <div>
         <label htmlFor="ageFilter">Alter:</label>
-        <input
-          type="text"
+        <select
           id="ageFilter"
           value={ageFilter}
           onChange={(e) => setAgeFilter(e.target.value)}
-        />
+        >
+          <option value="">Alle</option>
+          <option value="0-5">0-5 Jahre</option>
+          <option value="6-10">6-10 Jahre</option>
+          <option value="10+">Älter als 10 Jahre</option>
+        </select>
       </div>
 
       <div>
         <label htmlFor="genderFilter">Geschlecht:</label>
-        <input
-          type="text"
+        <select
           id="genderFilter"
           value={genderFilter}
           onChange={(e) => setGenderFilter(e.target.value)}
-        />
+        >
+          <option value="">Alle</option>
+          <option value="weiblich">Weiblich</option>
+          <option value="männlich">Männlich</option>
+        </select>
       </div>
 
       <button onClick={handleFilter}>Filter anwenden</button>
