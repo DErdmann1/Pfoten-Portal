@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import List from "../components/Doglist/index.js";
-import animals from "../lib/dog_data.js";
+import dogs from "../lib/dog_data.js";
 
 function AnimalsPage() {
-  const [filteredItems, setFilteredItems] = useState(animals);
+  const [filteredItems, setFilteredItems] = useState(dogs);
   const [ageFilter, setAgeFilter] = useState("");
   const [genderFilter, setGenderFilter] = useState("");
   const [speciesFilter, setSpeciesFilter] = useState("");

@@ -1,15 +1,15 @@
 import React, { useState } from "react";
-import List from "../components/Doglist/index.js";
-import animals from "../lib/dog_data.js";
+import List from "../components/Catlist/index.js";
+import cats from "../lib/cats_data.js";
 
 function AnimalsPage() {
-  const [filteredItems, setFilteredItems] = useState(animals);
+  const [filteredItems, setFilteredItems] = useState(cats);
   const [ageFilter, setAgeFilter] = useState("");
   const [genderFilter, setGenderFilter] = useState("");
   const [speciesFilter, setSpeciesFilter] = useState("");
 
   const handleFilter = () => {
-    const filteredList = animals.filter((item) => {
+    const filteredList = cats.filter((item) => {
       if (genderFilter && item.gender !== genderFilter) {
         return false;
       }
