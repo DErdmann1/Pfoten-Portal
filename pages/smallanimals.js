@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import List from "../components/Smallanimallist/index.js";
-import animals from "../lib/smallanimals.js";
+import smallanimals from "../lib/smallanimals_data.js";
 
 function AnimalsPage() {
   const [filteredItems, setFilteredItems] = useState(smallanimals);
@@ -9,7 +9,7 @@ function AnimalsPage() {
   const [speciesFilter, setSpeciesFilter] = useState("");
 
   const handleFilter = () => {
-    const filteredList = animals.filter((item) => {
+    const filteredList = smallanimals.filter((item) => {
       if (genderFilter && item.gender !== genderFilter) {
         return false;
       }
