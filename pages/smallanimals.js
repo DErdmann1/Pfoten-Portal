@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Link from "next/link";
 import List from "../components/Smallanimallist/index.js";
 import smallanimals from "../lib/smallanimals_data.js";
 
@@ -8,6 +9,7 @@ function AnimalsPage() {
   const [genderFilter, setGenderFilter] = useState("");
   const [speciesFilter, setSpeciesFilter] = useState("");
   const [locationFilter, setLocationFilter] = useState("");
+  const [noResults, setNoResults] = useState(false);
 
   const handleFilter = () => {
     const filteredList = smallanimals.filter((item) => {
@@ -37,6 +39,7 @@ function AnimalsPage() {
     });
 
     setFilteredItems(filteredList);
+    setNoResults(filteredList.length === 0);
   };
 
   return (
@@ -86,9 +89,11 @@ function AnimalsPage() {
 
       <button onClick={handleFilter}>Filter anwenden</button>
 
-      {filteredItems.length === 0 && <p>Keine Ergebnisse gefunden.</p>}
+      {noResults && <p>Keine Ergebnisse gefunden.</p>}
 
       <List items={filteredItems} />
+
+      <Link href="/">Zurück</Link>
     </main>
   );
 }

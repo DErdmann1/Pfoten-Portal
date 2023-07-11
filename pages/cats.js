@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Link from "next/link";
 import List from "../components/Catlist/index.js";
 import cats from "../lib/cat_data.js";
 
@@ -36,6 +37,7 @@ function AnimalsPage() {
     });
 
     setFilteredItems(filteredList);
+    setNoResults(filteredList.length === 0);
   };
 
   return (
@@ -84,9 +86,11 @@ function AnimalsPage() {
 
       <button onClick={handleFilter}>Filter anwenden</button>
 
-      {filteredItems.length === 0 && <p>Keine Ergebnisse gefunden.</p>}
+      {noResults && <p>Keine Ergebnisse gefunden.</p>}
 
       <List items={filteredItems} />
+
+      <Link href="/">Zurück</Link>
     </main>
   );
 }

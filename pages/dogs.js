@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Link from "next/link";
 import List from "../components/Doglist/index.js";
 import dogs from "../lib/dog_data.js";
 
@@ -7,6 +8,7 @@ function AnimalsPage() {
   const [ageFilter, setAgeFilter] = useState("");
   const [genderFilter, setGenderFilter] = useState("");
   const [locationFilter, setLocationFilter] = useState("");
+  const [noResults, setNoResults] = useState(false);
 
   const handleFilter = () => {
     const filteredList = dogs.filter((item) => {
@@ -36,6 +38,7 @@ function AnimalsPage() {
     });
 
     setFilteredItems(filteredList);
+    setNoResults(filteredList.length === 0);
   };
 
   return (
@@ -83,9 +86,11 @@ function AnimalsPage() {
 
       <button onClick={handleFilter}>Filter anwenden</button>
 
-      {filteredItems.length === 0 && <p>Keine Ergebnisse gefunden.</p>}
+      {noResults && <p>Keine Ergebnisse gefunden.</p>}
 
       <List items={filteredItems} />
+
+      <Link href="/">Zurück</Link>
     </main>
   );
 }
