@@ -11,7 +11,10 @@ function AnimalsPage() {
 
   const handleFilter = () => {
     const filteredList = smallanimals.filter((item) => {
-      if (genderFilter && item.gender !== genderFilter) {
+      if (
+        genderFilter &&
+        item.gender.toLowerCase() !== genderFilter.toLowerCase()
+      ) {
         return false;
       }
 
@@ -24,6 +27,10 @@ function AnimalsPage() {
         } else if (ageFilter === "10+" && age < 11) {
           return false;
         }
+      }
+
+      if (locationFilter && item.location !== locationFilter) {
+        return false;
       }
 
       return true;
@@ -78,6 +85,8 @@ function AnimalsPage() {
       </div>
 
       <button onClick={handleFilter}>Filter anwenden</button>
+
+      {filteredItems.length === 0 && <p>Keine Ergebnisse gefunden.</p>}
 
       <List items={filteredItems} />
     </main>

@@ -6,12 +6,14 @@ function AnimalsPage() {
   const [filteredItems, setFilteredItems] = useState(dogs);
   const [ageFilter, setAgeFilter] = useState("");
   const [genderFilter, setGenderFilter] = useState("");
-  const [speciesFilter, setSpeciesFilter] = useState("");
   const [locationFilter, setLocationFilter] = useState("");
 
   const handleFilter = () => {
     const filteredList = dogs.filter((item) => {
-      if (genderFilter && item.gender !== genderFilter) {
+      if (
+        genderFilter &&
+        item.gender.toLowerCase() !== genderFilter.toLowerCase()
+      ) {
         return false;
       }
 
@@ -25,9 +27,11 @@ function AnimalsPage() {
           return false;
         }
       }
+
       if (locationFilter && item.location !== locationFilter) {
         return false;
       }
+
       return true;
     });
 
@@ -78,6 +82,8 @@ function AnimalsPage() {
       </div>
 
       <button onClick={handleFilter}>Filter anwenden</button>
+
+      {filteredItems.length === 0 && <p>Keine Ergebnisse gefunden.</p>}
 
       <List items={filteredItems} />
     </main>

@@ -8,10 +8,14 @@ function AnimalsPage() {
   const [genderFilter, setGenderFilter] = useState("");
   const [speciesFilter, setSpeciesFilter] = useState("");
   const [locationFilter, setLocationFilter] = useState("");
+  const [noResults, setNoResults] = useState(false);
 
   const handleFilter = () => {
     const filteredList = cats.filter((item) => {
-      if (genderFilter && item.gender !== genderFilter) {
+      if (
+        genderFilter &&
+        item.gender.toLowerCase() !== genderFilter.toLowerCase()
+      ) {
         return false;
       }
 
@@ -79,6 +83,8 @@ function AnimalsPage() {
       </div>
 
       <button onClick={handleFilter}>Filter anwenden</button>
+
+      {filteredItems.length === 0 && <p>Keine Ergebnisse gefunden.</p>}
 
       <List items={filteredItems} />
     </main>
