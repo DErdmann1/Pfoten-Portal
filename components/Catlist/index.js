@@ -12,6 +12,7 @@ export default function List({ items }) {
           <p>Geschlecht: {item.gender}</p>
           <p>Rasse: {item.breed}</p>
           <p>Standort: {item.location}</p>
+          <button>Mehr Details..</button>
         </li>
       ))}
     </ul>
