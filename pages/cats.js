@@ -25,7 +25,9 @@ function AnimalsPage() {
           return false;
         }
       }
-
+      if (locationFilter && item.location !== locationFilter) {
+        return false;
+      }
       return true;
     });
 
@@ -70,9 +72,9 @@ function AnimalsPage() {
           onChange={(e) => setLocationFilter(e.target.value)}
         >
           <option value="">Alle</option>
-          <option value="Berlin">Tierheim 1</option>
-          <option value="München">Tierheim 2</option>
-          <option value="München">Tierheim 3</option>
+          <option value="Tierheim 1">Tierheim 1</option>
+          <option value="Tierheim 2">Tierheim 2</option>
+          <option value="Tierheim 3">Tierheim 3</option>
         </select>
       </div>
 
