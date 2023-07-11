@@ -70,9 +70,9 @@ function AnimalsPage() {
           onChange={(e) => setLocationFilter(e.target.value)}
         >
           <option value="">Alle</option>
-          <option value="Berlin">Berlin</option>
-          <option value="München">München</option>
-          {/* Füge weitere Standorte hinzu */}
+          <option value="Berlin">Tierheim 1</option>
+          <option value="München">Tierheim 2</option>
+          <option value="München">Tierheim 3</option>
         </select>
       </div>
 
