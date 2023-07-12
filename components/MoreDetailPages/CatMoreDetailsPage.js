@@ -1,10 +1,11 @@
-import { useParams } from "react-router-dom";
+import { useRouter } from "next/router";
 import cats from "../../lib/cat_data";
 import Image from "next/image";
 
 const CatMoreDetailsPage = () => {
-  const { id } = useParams();
-  const cat = cats.find((cat) => cat.id === parseInt(id));
+  const router = useRouter();
+  const { id } = router.query;
+  const cat = cats.find((cat) => cat.id === id);
 
   return (
     <div>
