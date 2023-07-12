@@ -12,7 +12,10 @@ export default function List({ items }) {
           <p>Geschlecht: {item.gender}</p>
           <p>Rasse: {item.breed}</p>
           <p>Standort: {item.location}</p>
-          <Link href={`/moredetails/${item.id}`}>Mehr Details..</Link>
+
+          <Link href={`/moredetails/${item.id}`}>
+            <button>More details</button>
+          </Link>
         </li>
       ))}
     </ul>
