@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function List({ items }) {
   return (
@@ -12,6 +13,9 @@ export default function List({ items }) {
           <p>Geschlecht: {item.gender}</p>
           <p>Rasse: {item.breed}</p>
           <p>Standort: {item.location}</p>
+          <Link href={`/moredetails/${item.id}`}>
+            <button>Mehr Details..</button>
+          </Link>
         </li>
       ))}
     </ul>

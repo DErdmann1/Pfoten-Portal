@@ -88,7 +88,8 @@ function AnimalsPage() {
 
       {noResults && <p>Keine Ergebnisse gefunden.</p>}
 
-      <List items={filteredItems} />
+      {/* Pass the Link component to the List component as a prop */}
+      <List items={filteredItems} Link={Link} />
 
       <Link href="/">Zurück</Link>
     </main>
