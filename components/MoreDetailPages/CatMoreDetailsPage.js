@@ -1,4 +1,3 @@
-import React from "react";
 import { useParams } from "react-router-dom";
 import cats from "../../lib/cat_data";
 import Image from "next/image";

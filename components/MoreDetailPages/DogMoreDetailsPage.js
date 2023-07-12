@@ -1,4 +1,4 @@
-import React from "react";
+
 import { Image } from "react";
 import { useParams } from "react-router";
 import data from "../lib/data.js";
