@@ -1,12 +1,11 @@
-
 import { Image } from "react";
 import { useParams } from "react-router";
 import data from "../lib/data.js";
+import { View, Text } from "react-native";
 
 function DogMoreDetailsPage() {
-  const { id } = useParams(); // Hier verwendest du die übergebene ID aus der URL
+  const { id } = useParams();
 
-  // Finde das entsprechende Tier in den Daten
   const animal = data.find((item) => item.id === id);
 
   if (!animal) {
@@ -15,7 +14,7 @@ function DogMoreDetailsPage() {
 
   return (
     <View>
-      <Image source={animal.image} alt={Bild desTieres} />
+      <Image source={animal.image} alt={animal.breed} />
       <Text>{animal.infoText}</Text>
     </View>
   );

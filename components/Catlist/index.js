@@ -14,7 +14,7 @@ export default function List({ items }) {
           <p>Standort: {item.location}</p>
 
           <Link href={`/moredetails/${item.id}`}>
-            <button>More details</button>
+            <button>Mehr Details..</button>
           </Link>
         </li>
       ))}
