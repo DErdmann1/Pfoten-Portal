@@ -52,7 +52,7 @@ export default function MoreDetailsPage() {
       <p>Alter: {animal.age}</p>
       <p>Geschlecht: {animal.gender}</p>
       <p>Rasse: {animal.breed}</p>
-      <p>Ort: {animal.location}</p>
+      <p>Standort: {animal.location}</p>
       <p>{animal.infoText}</p>
 
       {isSubmitted ? (

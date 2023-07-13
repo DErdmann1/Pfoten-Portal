@@ -14,7 +14,7 @@ const CatMoreDetailsPage = () => {
       <p>Alter: {cat.age}</p>
       <p>Geschlecht: {cat.gender}</p>
       <p>Rasse: {cat.breed}</p>
-      <p>Ort: {cat.location}</p>
+      <p>Standort: {cat.location}</p>
       <p>{cat.infoText}</p>
     </div>
   );
