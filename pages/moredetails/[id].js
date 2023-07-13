@@ -22,13 +22,8 @@ export default function MoreDetailsPage() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Hier können Sie die Logik zum Absenden des Kontaktformulars implementieren
-    // Erfassen Sie die Formulardaten und senden Sie sie an den Besitzer
-
-    // Beispiel: Formulardaten anzeigen
     console.log(formData);
 
-    // Formular leeren
     setFormData({
       name: "",
       email: "",
@@ -36,7 +31,6 @@ export default function MoreDetailsPage() {
       message: "",
     });
 
-    // Bestätigungsnachricht anzeigen
     setIsSubmitted(true);
   };
 
@@ -62,10 +56,7 @@ export default function MoreDetailsPage() {
       <p>{animal.infoText}</p>
 
       {isSubmitted ? (
-        <p>
-          Vielen Dank für Ihre Nachricht! Die aktuelle Vermittlungsstelle wird
-          sich schnellstmöglich mit Ihnen in Verbindung setzen.
-        </p>
+        <p>Vielen Dank für Ihre Nachricht! Wir melden uns bei Ihnen.</p>
       ) : (
         <form onSubmit={handleSubmit}>
           <label>
