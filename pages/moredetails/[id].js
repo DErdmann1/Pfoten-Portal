@@ -22,8 +22,10 @@ export default function MoreDetailsPage() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(formData);
+    // Hier können Sie die Logik zum Absenden des Kontaktformulars implementieren
+    // Erfassen Sie die Formulardaten und senden Sie sie an den Besitzer
 
+    // Formular leeren
     setFormData({
       name: "",
       email: "",
@@ -31,6 +33,7 @@ export default function MoreDetailsPage() {
       message: "",
     });
 
+    // Bestätigungsnachricht anzeigen
     setIsSubmitted(true);
   };
 
@@ -52,14 +55,11 @@ export default function MoreDetailsPage() {
       <p>Alter: {animal.age}</p>
       <p>Geschlecht: {animal.gender}</p>
       <p>Rasse: {animal.breed}</p>
-      <p>Standort: {animal.location}</p>
+      <p>Ort: {animal.location}</p>
       <p>{animal.infoText}</p>
 
       {isSubmitted ? (
-        <p>
-          Vielen Dank für Ihre Nachricht! Unser Vermittlungsteam wird sich
-          schnellstmöglich mit Ihnen in Verbindung setzen.
-        </p>
+        <p>Vielen Dank für Ihre Nachricht! Wir melden uns bei Ihnen.</p>
       ) : (
         <form onSubmit={handleSubmit}>
           <label>
