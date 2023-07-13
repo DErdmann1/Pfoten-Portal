@@ -14,6 +14,7 @@ export default function MoreDetailsPage() {
     subject: "",
     message: "",
   });
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
   const animal = [...cats, ...dogs, ...smallanimals].find(
     (animal) => animal.id === parseInt(id)
@@ -23,7 +24,20 @@ export default function MoreDetailsPage() {
     e.preventDefault();
     // Hier können Sie die Logik zum Absenden des Kontaktformulars implementieren
     // Erfassen Sie die Formulardaten und senden Sie sie an den Besitzer
-    console.log(formData); // Beispiel: Ausgabe der Formulardaten in der Konsole
+
+    // Beispiel: Formulardaten anzeigen
+    console.log(formData);
+
+    // Formular leeren
+    setFormData({
+      name: "",
+      email: "",
+      subject: "",
+      message: "",
+    });
+
+    // Bestätigungsnachricht anzeigen
+    setIsSubmitted(true);
   };
 
   const handleChange = (e) => {
@@ -47,52 +61,59 @@ export default function MoreDetailsPage() {
       <p>Ort: {animal.location}</p>
       <p>{animal.infoText}</p>
 
-      <form onSubmit={handleSubmit}>
-        <label>
-          Name:
-          <input
-            type="text"
-            name="name"
-            value={formData.name}
-            onChange={handleChange}
-            required
-          />
-        </label>
-        <br />
-        <label>
-          E-Mail:
-          <input
-            type="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-            required
-          />
-        </label>
-        <br />
-        <label>
-          Betreff:
-          <input
-            type="text"
-            name="subject"
-            value={formData.subject}
-            onChange={handleChange}
-            required
-          />
-        </label>
-        <br />
-        <label>
-          Nachricht:
-          <textarea
-            name="message"
-            value={formData.message}
-            onChange={handleChange}
-            required
-          ></textarea>
-        </label>
-        <br />
-        <button type="submit">Senden</button>
-      </form>
+      {isSubmitted ? (
+        <p>
+          Vielen Dank für Ihre Nachricht! Die aktuelle Vermittlungsstelle wird
+          sich schnellstmöglich mit Ihnen in Verbindung setzen.
+        </p>
+      ) : (
+        <form onSubmit={handleSubmit}>
+          <label>
+            Name:
+            <input
+              type="text"
+              name="name"
+              value={formData.name}
+              onChange={handleChange}
+              required
+            />
+          </label>
+          <br />
+          <label>
+            E-Mail:
+            <input
+              type="email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              required
+            />
+          </label>
+          <br />
+          <label>
+            Betreff:
+            <input
+              type="text"
+              name="subject"
+              value={formData.subject}
+              onChange={handleChange}
+              required
+            />
+          </label>
+          <br />
+          <label>
+            Nachricht:
+            <textarea
+              name="message"
+              value={formData.message}
+              onChange={handleChange}
+              required
+            ></textarea>
+          </label>
+          <br />
+          <button type="submit">Senden</button>
+        </form>
+      )}
     </div>
   );
 }
