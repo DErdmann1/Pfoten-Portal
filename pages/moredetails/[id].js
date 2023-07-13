@@ -56,7 +56,10 @@ export default function MoreDetailsPage() {
       <p>{animal.infoText}</p>
 
       {isSubmitted ? (
-        <p>Vielen Dank für Ihre Nachricht! Wir melden uns bei Ihnen.</p>
+        <p>
+          Vielen Dank für Ihre Nachricht! Unser Vermittlungsteam wird sich
+          schnellstmöglich mit Ihnen in Verbindung setzen.
+        </p>
       ) : (
         <form onSubmit={handleSubmit}>
           <label>
