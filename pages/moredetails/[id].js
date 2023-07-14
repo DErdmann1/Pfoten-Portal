@@ -7,6 +7,7 @@ import dogs from "../../lib/dog_data";
 import smallanimals from "../../lib/smallanimals_data";
 import Link from "next/link";
 import Footer from "../../components/Footer/index.js";
+import BookmarkButton from "../../components/Bookmarkbutton/index.js";
 
 const StyledH1 = styled.h1`
   text-align: center;

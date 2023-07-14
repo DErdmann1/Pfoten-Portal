@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import BookmarkButton from "../Bookmarkbutton/index.js";
+import BookmarkButton from "../Bookmarkbutton";
 
 export default function List({ items }) {
   const handleBookmark = (itemId, isBookmarked) => {

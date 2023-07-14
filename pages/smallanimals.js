@@ -3,7 +3,7 @@ import Link from "next/link";
 import List from "../components/Smallanimallist/index.js";
 import smallanimals from "../lib/smallanimals_data.js";
 import Footer from "../components/Footer/index.js";
-import BookmarkButton from "../../components/Bookmarkbutton/index.js";
+import BookmarkButton from "../components/Bookmarkbutton";
 
 function AnimalsPage() {
   const [filteredItems, setFilteredItems] = useState(smallanimals);
