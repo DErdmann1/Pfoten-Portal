@@ -1,7 +1,12 @@
 import Image from "next/image";
 import Link from "next/link";
+import BookmarkButton from "../Bookmarkbutton"; // Importieren der BookmarkButton-Komponente
 
 export default function List({ items }) {
+  const handleBookmark = (itemId, isBookmarked) => {
+    // Hier können Sie Code hinzufügen, um das Tier als Lesezeichen zu markieren oder das Lesezeichen zu entfernen
+  };
+
   return (
     <ul>
       {items.map((item) => (
@@ -12,6 +17,11 @@ export default function List({ items }) {
           <p>Geschlecht: {item.gender}</p>
           <p>Rasse: {item.breed}</p>
           <p>Standort: {item.location}</p>
+
+          {/* Hier wird die BookmarkButton-Komponente verwendet */}
+          <BookmarkButton
+            onBookmark={(isBookmarked) => handleBookmark(item.id, isBookmarked)}
+          />
 
           <Link href={`/moredetails/${item.id}`}>
             <button>Mehr Details..</button>

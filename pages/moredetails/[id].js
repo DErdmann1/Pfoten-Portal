@@ -27,6 +27,10 @@ export default function MoreDetailsPage() {
     (animal) => animal.id === parseInt(id)
   );
 
+  const handleBookmark = (isBookmarked) => {
+    // Hier können Sie Code hinzufügen, um das Tier als Lesezeichen zu markieren oder das Lesezeichen zu entfernen
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -60,6 +64,9 @@ export default function MoreDetailsPage() {
       <p>Rasse: {animal.breed}</p>
       <p>Ort: {animal.location}</p>
       <p>{animal.infoText}</p>
+
+      {/* Hier wird die BookmarkButton-Komponente verwendet */}
+      <BookmarkButton onBookmark={handleBookmark} />
 
       {isSubmitted ? (
         <p>
