@@ -29,7 +29,13 @@ export default function MoreDetailsPage() {
   );
 
   const handleBookmark = (isBookmarked) => {
-    // Hier können Sie Code hinzufügen, um das Tier als Lesezeichen zu markieren oder das Lesezeichen zu entfernen
+    let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+    if (isBookmarked) {
+      favorites.push(animal.id);
+    } else {
+      favorites = favorites.filter((favId) => favId !== animal.id);
+    }
+    localStorage.setItem("favorites", JSON.stringify(favorites));
   };
 
   const handleSubmit = (e) => {

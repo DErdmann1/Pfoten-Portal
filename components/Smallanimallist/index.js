@@ -2,9 +2,16 @@ import Image from "next/image";
 import Link from "next/link";
 import BookmarkButton from "../Bookmarkbutton";
 
-export default function List({ items }) {
+export default function List({ items, onBookmark }) {
   const handleBookmark = (itemId, isBookmarked) => {
-    //Code hinzufügen, um das Tier als Lesezeichen zu markieren oder das Lesezeichen zu entfernen
+    let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+    if (isBookmarked) {
+      favorites.push(itemId);
+    } else {
+      favorites = favorites.filter((favId) => favId !== itemId);
+    }
+    localStorage.setItem("favorites", JSON.stringify(favorites));
+    onBookmark(itemId, isBookmarked);
   };
 
   return (

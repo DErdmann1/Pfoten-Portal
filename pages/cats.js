@@ -111,13 +111,11 @@ function AnimalsPage() {
 
       {noResults && <p>Keine Ergebnisse gefunden.</p>}
 
-      {/* Pass the Link component to the List component as a prop */}
-      {/* Add a button to allow users to favorite an animal */}
+      {/* Hier wird die List Komponente gerendert */}
+      <List items={filteredItems} />
+
       {filteredItems.map((animal) => (
         <>
-          {/* Render the animal using the List component or custom JSX */}
-          {/* ... */}
-          {/* Add a button to allow users to favorite an animal */}
           <button onClick={() => handleFavorite(animal.id)}>
             {/* Hier können Sie das SVG-Icon einfügen */}
           </button>

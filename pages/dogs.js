@@ -11,6 +11,16 @@ function AnimalsPage() {
   const [locationFilter, setLocationFilter] = useState("");
   const [noResults, setNoResults] = useState(false);
 
+  const handleBookmark = (id) => {
+    let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+    if (favorites.includes(id)) {
+      favorites = favorites.filter((favId) => favId !== id);
+    } else {
+      favorites.push(id);
+    }
+    localStorage.setItem("favorites", JSON.stringify(favorites));
+  };
+
   const handleFilter = () => {
     const filteredList = dogs.filter((item) => {
       if (
@@ -89,7 +99,8 @@ function AnimalsPage() {
 
       {noResults && <p>Keine Ergebnisse gefunden.</p>}
 
-      <List items={filteredItems} />
+      {/* Hier wird die List Komponente gerendert */}
+      <List items={filteredItems} onBookmark={handleBookmark} />
 
       <Link href="/">Zurück</Link>
       <br></br>

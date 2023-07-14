@@ -2,9 +2,16 @@ import Image from "next/image";
 import Link from "next/link";
 import BookmarkButton from "../Bookmarkbutton"; // Importieren der BookmarkButton-Komponente
 
-export default function List({ items }) {
+export default function List({ items, onBookmark }) {
   const handleBookmark = (itemId, isBookmarked) => {
-    //Code hinzufügen, um das Tier als Lesezeichen zu markieren oder das Lesezeichen zu entfernen
+    let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+    if (isBookmarked) {
+      favorites.push(itemId);
+    } else {
+      favorites = favorites.filter((favId) => favId !== itemId);
+    }
+    localStorage.setItem("favorites", JSON.stringify(favorites));
+    onBookmark(itemId, isBookmarked);
   };
 
   return (
@@ -18,6 +25,7 @@ export default function List({ items }) {
           <p>Rasse: {item.breed}</p>
           <p>Standort: {item.location}</p>
 
+          {/* Hier wird die BookmarkButton-Komponente verwendet */}
           <BookmarkButton
             onBookmark={(isBookmarked) => handleBookmark(item.id, isBookmarked)}
           />

@@ -4,7 +4,13 @@ import BookmarkButton from "../Bookmarkbutton"; // Importieren Sie hier alle Tie
 
 export default function List({ items }) {
   const handleBookmark = (itemId, isBookmarked) => {
-    //Code hinzufügen, um das Tier als Lesezeichen zu markieren oder das Lesezeichen zu entfernen
+    let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+    if (isBookmarked) {
+      favorites.push(itemId);
+    } else {
+      favorites = favorites.filter((favId) => favId !== itemId);
+    }
+    localStorage.setItem("favorites", JSON.stringify(favorites));
   };
 
   return (
