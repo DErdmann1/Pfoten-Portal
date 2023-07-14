@@ -115,6 +115,7 @@ export default function MoreDetailsPage() {
       )}
       <br></br>
       <Link href="/">Zurück</Link>
+      <br></br>
     </div>
   );
 }
