@@ -11,6 +11,11 @@ const StyledH1 = styled.h1`
   text-align: center;
 `;
 
+const StyledFooter = styled.footer`
+  text-align: center;
+  border-top: 2px solid black;
+`;
+
 export default function MoreDetailsPage() {
   const router = useRouter();
   const { id } = router.query;
@@ -115,6 +120,7 @@ export default function MoreDetailsPage() {
       )}
       <br></br>
       <Link href="/">Zurück</Link>
+      <StyledFooter>FOOTER</StyledFooter>
       <br></br>
     </div>
   );
