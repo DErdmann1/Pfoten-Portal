@@ -5,6 +5,7 @@ import styled from "styled-components";
 import cats from "../../lib/cat_data";
 import dogs from "../../lib/dog_data";
 import smallanimals from "../../lib/smallanimals_data";
+import Link from "next/link";
 
 const StyledH1 = styled.h1`
   text-align: center;
@@ -114,4 +115,5 @@ export default function MoreDetailsPage() {
       )}
     </div>
   );
+  <Link href="/">Zurück</Link>;
 }
