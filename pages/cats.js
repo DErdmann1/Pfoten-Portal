@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import List from "../components/Catlist/index.js";
 import cats from "../lib/cat_data.js";
@@ -11,6 +11,28 @@ function AnimalsPage() {
   const [speciesFilter, setSpeciesFilter] = useState("");
   const [locationFilter, setLocationFilter] = useState("");
   const [noResults, setNoResults] = useState(false);
+  const [favorites, setFavorites] = useState([]);
+
+  // Lade die Favoritenliste aus dem Local Storage beim ersten Rendern der Seite
+  useEffect(() => {
+    const storedFavorites = localStorage.getItem("favorites");
+    if (storedFavorites) {
+      setFavorites(JSON.parse(storedFavorites));
+    }
+  }, []);
+
+  const handleFavorite = (id) => {
+    let newFavorites;
+    if (favorites.includes(id)) {
+      newFavorites = favorites.filter((favId) => favId !== id);
+    } else {
+      newFavorites = [...favorites, id];
+    }
+    setFavorites(newFavorites);
+
+    // Speichere die aktualisierte Favoritenliste im Local Storage
+    localStorage.setItem("favorites", JSON.stringify(newFavorites));
+  };
 
   const handleFilter = () => {
     const filteredList = cats.filter((item) => {
@@ -90,7 +112,17 @@ function AnimalsPage() {
       {noResults && <p>Keine Ergebnisse gefunden.</p>}
 
       {/* Pass the Link component to the List component as a prop */}
-      <List items={filteredItems} Link={Link} />
+      {/* Add a button to allow users to favorite an animal */}
+      {filteredItems.map((animal) => (
+        <>
+          {/* Render the animal using the List component or custom JSX */}
+          {/* ... */}
+          {/* Add a button to allow users to favorite an animal */}
+          <button onClick={() => handleFavorite(animal.id)}>
+            {/* Hier können Sie das SVG-Icon einfügen */}
+          </button>
+        </>
+      ))}
 
       <Link href="/">Zurück</Link>
       <br></br>
