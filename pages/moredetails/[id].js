@@ -113,7 +113,8 @@ export default function MoreDetailsPage() {
           <button type="submit">Senden</button>
         </form>
       )}
+      <br></br>
+      <Link href="/">Zurück</Link>
     </div>
   );
-  <Link href="/">Zurück</Link>;
 }
