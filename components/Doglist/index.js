@@ -4,7 +4,7 @@ import BookmarkButton from "../Bookmarkbutton"; // Importieren der BookmarkButto
 
 export default function List({ items }) {
   const handleBookmark = (itemId, isBookmarked) => {
-    // Hier können Sie Code hinzufügen, um das Tier als Lesezeichen zu markieren oder das Lesezeichen zu entfernen
+    //Code hinzufügen, um das Tier als Lesezeichen zu markieren oder das Lesezeichen zu entfernen
   };
 
   return (

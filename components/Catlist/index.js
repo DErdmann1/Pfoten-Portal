@@ -1,10 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
-import BookmarkButton from "../Bookmarkbutton"; // Importieren der BookmarkButton-Komponente
+import BookmarkButton from "../Bookmarkbutton";
 
 export default function List({ items }) {
   const handleBookmark = (itemId, isBookmarked) => {
-    // Hier können Sie Code hinzufügen, um das Tier als Lesezeichen zu markieren oder das Lesezeichen zu entfernen
+    // Code hinzufügen, um das Tier als Lesezeichen zu markieren oder das Lesezeichen zu entfernen
   };
 
   return (
