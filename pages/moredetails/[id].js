@@ -1,9 +1,14 @@
 import { useRouter } from "next/router";
 import Image from "next/image";
 import { useState } from "react";
+import styled from "styled-components";
 import cats from "../../lib/cat_data";
 import dogs from "../../lib/dog_data";
 import smallanimals from "../../lib/smallanimals_data";
+
+const StyledH1 = styled.h1`
+  text-align: center;
+`;
 
 export default function MoreDetailsPage() {
   const router = useRouter();
@@ -22,10 +27,7 @@ export default function MoreDetailsPage() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Hier können Sie die Logik zum Absenden des Kontaktformulars implementieren
-    // Erfassen Sie die Formulardaten und senden Sie sie an den Besitzer
 
-    // Formular leeren
     setFormData({
       name: "",
       email: "",
@@ -33,7 +35,6 @@ export default function MoreDetailsPage() {
       message: "",
     });
 
-    // Bestätigungsnachricht anzeigen
     setIsSubmitted(true);
   };
 
@@ -50,7 +51,7 @@ export default function MoreDetailsPage() {
 
   return (
     <div>
-      <h1>{animal.name}</h1>
+      <StyledH1>{animal.name}</StyledH1>
       <Image src={animal.image} alt={animal.name} width={500} height={500} />
       <p>Alter: {animal.age}</p>
       <p>Geschlecht: {animal.gender}</p>
@@ -59,7 +60,10 @@ export default function MoreDetailsPage() {
       <p>{animal.infoText}</p>
 
       {isSubmitted ? (
-        <p>Vielen Dank für Ihre Nachricht! Wir melden uns bei Ihnen.</p>
+        <p>
+          Vielen Dank für Ihre Nachricht! Unser Vermittlungsteam wird sich
+          schnellstmöglich mit Ihnen in Verbindung setzen.
+        </p>
       ) : (
         <form onSubmit={handleSubmit}>
           <label>
