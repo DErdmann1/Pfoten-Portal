@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Link from "next/link";
 import List from "../components/Smallanimallist/index.js";
 import smallanimals from "../lib/smallanimals_data.js";
+import Footer from "../components/Footer/index.js";
 
 function AnimalsPage() {
   const [filteredItems, setFilteredItems] = useState(smallanimals);
@@ -94,6 +95,8 @@ function AnimalsPage() {
       <List items={filteredItems} />
 
       <Link href="/">Zurück</Link>
+      <br></br>
+      <Footer />
     </main>
   );
 }

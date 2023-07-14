@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Link from "next/link";
 import List from "../components/Doglist/index.js";
 import dogs from "../lib/dog_data.js";
+import Footer from "../components/Footer/index.js";
 
 function AnimalsPage() {
   const [filteredItems, setFilteredItems] = useState(dogs);
@@ -91,6 +92,8 @@ function AnimalsPage() {
       <List items={filteredItems} />
 
       <Link href="/">Zurück</Link>
+      <br></br>
+      <Footer />
     </main>
   );
 }
