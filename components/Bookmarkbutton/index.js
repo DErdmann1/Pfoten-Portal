@@ -1,4 +1,3 @@
-// components/Bookmark/index.js
 import { useState } from "react";
 
 export default function BookmarkButton({ onBookmark }) {

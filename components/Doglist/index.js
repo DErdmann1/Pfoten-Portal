@@ -18,7 +18,6 @@ export default function List({ items }) {
           <p>Rasse: {item.breed}</p>
           <p>Standort: {item.location}</p>
 
-          {/* Hier wird die BookmarkButton-Komponente verwendet */}
           <BookmarkButton
             onBookmark={(isBookmarked) => handleBookmark(item.id, isBookmarked)}
           />
