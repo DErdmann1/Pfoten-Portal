@@ -1,15 +1,27 @@
-import React, { useState } from "react";
+// cats.js
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import List from "../components/Catlist/index.js";
 import cats from "../lib/cat_data.js";
+import Footer from "../components/Footer/index.js";
 
-function AnimalsPage() {
+function CatsPage() {
   const [filteredItems, setFilteredItems] = useState(cats);
   const [ageFilter, setAgeFilter] = useState("");
   const [genderFilter, setGenderFilter] = useState("");
-  const [speciesFilter, setSpeciesFilter] = useState("");
   const [locationFilter, setLocationFilter] = useState("");
   const [noResults, setNoResults] = useState(false);
+  const [favorites, setFavorites] = useState([]);
+
+  const handleBookmark = (id) => {
+    let newFavorites;
+    if (favorites.includes(id)) {
+      newFavorites = favorites.filter((favId) => favId !== id);
+    } else {
+      newFavorites = [...favorites, id];
+    }
+    setFavorites(newFavorites);
+  };
 
   const handleFilter = () => {
     const filteredList = cats.filter((item) => {
@@ -30,9 +42,11 @@ function AnimalsPage() {
           return false;
         }
       }
+
       if (locationFilter && item.location !== locationFilter) {
         return false;
       }
+
       return true;
     });
 
@@ -43,7 +57,6 @@ function AnimalsPage() {
   return (
     <main>
       <h1>🐾 PfotenPortal 🐾</h1>
-
       <div>
         <label htmlFor="ageFilter">Alter:</label>
         <select
@@ -88,12 +101,13 @@ function AnimalsPage() {
 
       {noResults && <p>Keine Ergebnisse gefunden.</p>}
 
-      {/* Pass the Link component to the List component as a prop */}
-      <List items={filteredItems} Link={Link} />
+      <List items={filteredItems} onBookmark={handleBookmark} />
 
       <Link href="/">Zurück</Link>
+      <br />
+      <Footer />
     </main>
   );
 }
 
-export default AnimalsPage;
+export default CatsPage;

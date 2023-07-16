@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Footer from "../components/Footer/index.js";
 
 export default function HomePage() {
   return (
@@ -7,6 +8,7 @@ export default function HomePage() {
       <Link href="/dogs">Zu unseren Hunden </Link>
       <Link href="/cats">Zu unseren Katzen </Link>
       <Link href="/smallanimals">Zu unseren Kleintieren </Link>
+      <Footer />
     </main>
   );
 }

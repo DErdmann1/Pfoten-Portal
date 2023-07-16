@@ -6,6 +6,8 @@ import cats from "../../lib/cat_data";
 import dogs from "../../lib/dog_data";
 import smallanimals from "../../lib/smallanimals_data";
 import Link from "next/link";
+import Footer from "../../components/Footer/index.js";
+import BookmarkButton from "../../components/Bookmarkbutton/index.js";
 
 const StyledH1 = styled.h1`
   text-align: center;
@@ -25,6 +27,16 @@ export default function MoreDetailsPage() {
   const animal = [...cats, ...dogs, ...smallanimals].find(
     (animal) => animal.id === parseInt(id)
   );
+
+  const handleBookmark = (isBookmarked) => {
+    let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+    if (isBookmarked) {
+      favorites.push(animal.id);
+    } else {
+      favorites = favorites.filter((favId) => favId !== animal.id);
+    }
+    localStorage.setItem("favorites", JSON.stringify(favorites));
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -59,6 +71,8 @@ export default function MoreDetailsPage() {
       <p>Rasse: {animal.breed}</p>
       <p>Ort: {animal.location}</p>
       <p>{animal.infoText}</p>
+
+      <BookmarkButton onBookmark={handleBookmark} />
 
       {isSubmitted ? (
         <p>
@@ -116,6 +130,7 @@ export default function MoreDetailsPage() {
       <br></br>
       <Link href="/">Zurück</Link>
       <br></br>
+      <Footer />
     </div>
   );
 }

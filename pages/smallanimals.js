@@ -1,21 +1,41 @@
-import React, { useState } from "react";
+// smallanimals.js
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import List from "../components/Smallanimallist/index.js";
 import smallanimals from "../lib/smallanimals_data.js";
+import Footer from "../components/Footer/index.js";
 
-function AnimalsPage() {
+function SmallAnimalsPage() {
   const [filteredItems, setFilteredItems] = useState(smallanimals);
   const [ageFilter, setAgeFilter] = useState("");
   const [genderFilter, setGenderFilter] = useState("");
   const [speciesFilter, setSpeciesFilter] = useState("");
   const [locationFilter, setLocationFilter] = useState("");
   const [noResults, setNoResults] = useState(false);
+  const [favorites, setFavorites] = useState([]);
+
+  const handleBookmark = (id) => {
+    let newFavorites;
+    if (favorites.includes(id)) {
+      newFavorites = favorites.filter((favId) => favId !== id);
+    } else {
+      newFavorites = [...favorites, id];
+    }
+    setFavorites(newFavorites);
+  };
 
   const handleFilter = () => {
     const filteredList = smallanimals.filter((item) => {
       if (
         genderFilter &&
         item.gender.toLowerCase() !== genderFilter.toLowerCase()
+      ) {
+        return false;
+      }
+
+      if (
+        speciesFilter &&
+        item.species.toLowerCase() !== speciesFilter.toLowerCase()
       ) {
         return false;
       }
@@ -74,6 +94,20 @@ function AnimalsPage() {
       </div>
 
       <div>
+        <label htmlFor="speciesFilter">Art:</label>
+        <select
+          id="speciesFilter"
+          value={speciesFilter}
+          onChange={(e) => setSpeciesFilter(e.target.value)}
+        >
+          <option value="">Alle</option>
+          <option value="Kleintier">Kleintier</option>
+          <option value="Reptil">Reptil</option>
+          <option value="Vogel">Vogel</option>
+        </select>
+      </div>
+
+      <div>
         <label htmlFor="locationFilter">Standort:</label>
         <select
           id="locationFilter"
@@ -91,11 +125,13 @@ function AnimalsPage() {
 
       {noResults && <p>Keine Ergebnisse gefunden.</p>}
 
-      <List items={filteredItems} />
+      <List items={filteredItems} onBookmark={handleBookmark} />
 
       <Link href="/">Zurück</Link>
+      <br />
+      <Footer />
     </main>
   );
 }
 
-export default AnimalsPage;
+export default SmallAnimalsPage;
