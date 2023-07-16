@@ -12,7 +12,9 @@ function SmallAnimalsPage() {
   const [locationFilter, setLocationFilter] = useState("");
   const [noResults, setNoResults] = useState(false);
 
-  const [favorites, setFavorites] = useState([]);
+  const [favorites, setFavorites] = useState(
+    JSON.parse(localStorage.getItem("favorites")) || []
+  );
 
   const handleBookmark = (id) => {
     let newFavorites;
@@ -22,6 +24,7 @@ function SmallAnimalsPage() {
       newFavorites = [...favorites, id];
     }
     setFavorites(newFavorites);
+    localStorage.setItem("favorites", JSON.stringify(newFavorites));
   };
 
   const handleFilter = () => {
@@ -104,11 +107,10 @@ function SmallAnimalsPage() {
 
       {noResults && <p>Keine Ergebnisse gefunden.</p>}
 
-      {/* Hier wird die List Komponente gerendert */}
       <List items={filteredItems} onBookmark={handleBookmark} />
 
       <Link href="/">Zurück</Link>
-      <br></br>
+      <br />
       <Footer />
     </main>
   );

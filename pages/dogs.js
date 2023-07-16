@@ -11,7 +11,9 @@ function DogsPage() {
   const [locationFilter, setLocationFilter] = useState("");
   const [noResults, setNoResults] = useState(false);
 
-  const [favorites, setFavorites] = useState([]);
+  const [favorites, setFavorites] = useState(
+    JSON.parse(localStorage.getItem("favorites")) || []
+  );
 
   const handleBookmark = (id) => {
     let newFavorites;
@@ -21,6 +23,7 @@ function DogsPage() {
       newFavorites = [...favorites, id];
     }
     setFavorites(newFavorites);
+    localStorage.setItem("favorites", JSON.stringify(newFavorites));
   };
 
   const handleFilter = () => {
@@ -105,7 +108,7 @@ function DogsPage() {
       <List items={filteredItems} onBookmark={handleBookmark} />
 
       <Link href="/">Zurück</Link>
-      <br></br>
+      <br />
       <Footer />
     </main>
   );

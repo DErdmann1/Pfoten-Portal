@@ -4,14 +4,16 @@ import List from "../components/Catlist/index.js";
 import cats from "../lib/cat_data.js";
 import Footer from "../components/Footer/index.js";
 
-function AnimalsPage() {
+function CatsPage() {
   const [filteredItems, setFilteredItems] = useState(cats);
   const [ageFilter, setAgeFilter] = useState("");
   const [genderFilter, setGenderFilter] = useState("");
   const [locationFilter, setLocationFilter] = useState("");
   const [noResults, setNoResults] = useState(false);
 
-  const [favorites, setFavorites] = useState([]);
+  const [favorites, setFavorites] = useState(
+    JSON.parse(localStorage.getItem("favorites")) || []
+  );
 
   const handleBookmark = (id) => {
     let newFavorites;
@@ -21,6 +23,7 @@ function AnimalsPage() {
       newFavorites = [...favorites, id];
     }
     setFavorites(newFavorites);
+    localStorage.setItem("favorites", JSON.stringify(newFavorites));
   };
 
   const handleFilter = () => {
@@ -105,10 +108,10 @@ function AnimalsPage() {
       <List items={filteredItems} onBookmark={handleBookmark} />
 
       <Link href="/">Zurück</Link>
-      <br></br>
+      <br />
       <Footer />
     </main>
   );
 }
 
-export default AnimalsPage;
+export default CatsPage;
