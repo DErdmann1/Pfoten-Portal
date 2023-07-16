@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+// dogs.js
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import List from "../components/Doglist/index.js";
 import dogs from "../lib/dog_data.js";
@@ -10,10 +11,7 @@ function DogsPage() {
   const [genderFilter, setGenderFilter] = useState("");
   const [locationFilter, setLocationFilter] = useState("");
   const [noResults, setNoResults] = useState(false);
-
-  const [favorites, setFavorites] = useState(
-    JSON.parse(localStorage.getItem("favorites")) || []
-  );
+  const [favorites, setFavorites] = useState([]);
 
   const handleBookmark = (id) => {
     let newFavorites;
@@ -23,7 +21,6 @@ function DogsPage() {
       newFavorites = [...favorites, id];
     }
     setFavorites(newFavorites);
-    localStorage.setItem("favorites", JSON.stringify(newFavorites));
   };
 
   const handleFilter = () => {

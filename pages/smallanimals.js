@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+// smallanimals.js
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import List from "../components/Smallanimallist/index.js";
 import smallanimals from "../lib/smallanimals_data.js";
@@ -11,10 +12,7 @@ function SmallAnimalsPage() {
   const [speciesFilter, setSpeciesFilter] = useState("");
   const [locationFilter, setLocationFilter] = useState("");
   const [noResults, setNoResults] = useState(false);
-
-  const [favorites, setFavorites] = useState(
-    JSON.parse(localStorage.getItem("favorites")) || []
-  );
+  const [favorites, setFavorites] = useState([]);
 
   const handleBookmark = (id) => {
     let newFavorites;
@@ -24,7 +22,6 @@ function SmallAnimalsPage() {
       newFavorites = [...favorites, id];
     }
     setFavorites(newFavorites);
-    localStorage.setItem("favorites", JSON.stringify(newFavorites));
   };
 
   const handleFilter = () => {
@@ -32,6 +29,13 @@ function SmallAnimalsPage() {
       if (
         genderFilter &&
         item.gender.toLowerCase() !== genderFilter.toLowerCase()
+      ) {
+        return false;
+      }
+
+      if (
+        speciesFilter &&
+        item.species.toLowerCase() !== speciesFilter.toLowerCase()
       ) {
         return false;
       }
@@ -86,6 +90,20 @@ function SmallAnimalsPage() {
           <option value="">Alle</option>
           <option value="weiblich">Weiblich</option>
           <option value="männlich">Männlich</option>
+        </select>
+      </div>
+
+      <div>
+        <label htmlFor="speciesFilter">Art:</label>
+        <select
+          id="speciesFilter"
+          value={speciesFilter}
+          onChange={(e) => setSpeciesFilter(e.target.value)}
+        >
+          <option value="">Alle</option>
+          <option value="Kleintier">Kleintier</option>
+          <option value="Reptil">Reptil</option>
+          <option value="Vogel">Vogel</option>
         </select>
       </div>
 
