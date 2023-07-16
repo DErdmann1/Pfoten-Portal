@@ -11,7 +11,6 @@ export default function FavoritesPage() {
   // Lade die Favoritenliste aus dem Local Storage beim ersten Rendern der Seite
   useEffect(() => {
     const storedFavorites = localStorage.getItem("favorites");
-    console.log(storedFavorites); // Füge diese Zeile hinzu
     if (storedFavorites) {
       setFavorites(JSON.parse(storedFavorites));
     }
@@ -30,11 +29,9 @@ export default function FavoritesPage() {
     localStorage.setItem("favorites", JSON.stringify(newFavorites));
   };
 
-  console.log(favorites); // Füge diese Zeile hinzu
   const favoriteAnimals = animals.filter((animal) =>
     favorites.includes(animal.id)
   );
-  console.log(favoriteAnimals); // Füge diese Zeile hinzu
 
   return (
     <div>
@@ -44,7 +41,15 @@ export default function FavoritesPage() {
           <li key={animal.id}>
             {animal.name}{" "}
             <button onClick={() => handleFavorite(animal.id)}>
-              {/* Hier können Sie das SVG-Icon einfügen */}
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                width="24"
+                height="24"
+              >
+                <title>bookmark</title>
+                <path d="M17,3H7A2,2 0 0,0 5,5V21L12,18L19,21V5A2,2 0 0,0 17,3Z" />
+              </svg>
             </button>
           </li>
         ))}

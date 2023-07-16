@@ -3,9 +3,8 @@ import Link from "next/link";
 import List from "../components/Smallanimallist/index.js";
 import smallanimals from "../lib/smallanimals_data.js";
 import Footer from "../components/Footer/index.js";
-import BookmarkButton from "../components/Bookmarkbutton";
 
-function AnimalsPage() {
+function SmallAnimalsPage() {
   const [filteredItems, setFilteredItems] = useState(smallanimals);
   const [ageFilter, setAgeFilter] = useState("");
   const [genderFilter, setGenderFilter] = useState("");
@@ -13,14 +12,16 @@ function AnimalsPage() {
   const [locationFilter, setLocationFilter] = useState("");
   const [noResults, setNoResults] = useState(false);
 
+  const [favorites, setFavorites] = useState([]);
+
   const handleBookmark = (id) => {
-    let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+    let newFavorites;
     if (favorites.includes(id)) {
-      favorites = favorites.filter((favId) => favId !== id);
+      newFavorites = favorites.filter((favId) => favId !== id);
     } else {
-      favorites.push(id);
+      newFavorites = [...favorites, id];
     }
-    localStorage.setItem("favorites", JSON.stringify(favorites));
+    setFavorites(newFavorites);
   };
 
   const handleFilter = () => {
@@ -113,4 +114,4 @@ function AnimalsPage() {
   );
 }
 
-export default AnimalsPage;
+export default SmallAnimalsPage;

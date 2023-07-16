@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import List from "../components/Catlist/index.js";
 import cats from "../lib/cat_data.js";
@@ -8,20 +8,12 @@ function AnimalsPage() {
   const [filteredItems, setFilteredItems] = useState(cats);
   const [ageFilter, setAgeFilter] = useState("");
   const [genderFilter, setGenderFilter] = useState("");
-  const [speciesFilter, setSpeciesFilter] = useState("");
   const [locationFilter, setLocationFilter] = useState("");
   const [noResults, setNoResults] = useState(false);
+
   const [favorites, setFavorites] = useState([]);
 
-  // Lade die Favoritenliste aus dem Local Storage beim ersten Rendern der Seite
-  useEffect(() => {
-    const storedFavorites = localStorage.getItem("favorites");
-    if (storedFavorites) {
-      setFavorites(JSON.parse(storedFavorites));
-    }
-  }, []);
-
-  const handleFavorite = (id) => {
+  const handleBookmark = (id) => {
     let newFavorites;
     if (favorites.includes(id)) {
       newFavorites = favorites.filter((favId) => favId !== id);
@@ -29,9 +21,6 @@ function AnimalsPage() {
       newFavorites = [...favorites, id];
     }
     setFavorites(newFavorites);
-
-    // Speichere die aktualisierte Favoritenliste im Local Storage
-    localStorage.setItem("favorites", JSON.stringify(newFavorites));
   };
 
   const handleFilter = () => {
@@ -53,9 +42,11 @@ function AnimalsPage() {
           return false;
         }
       }
+
       if (locationFilter && item.location !== locationFilter) {
         return false;
       }
+
       return true;
     });
 
@@ -66,7 +57,6 @@ function AnimalsPage() {
   return (
     <main>
       <h1>🐾 PfotenPortal 🐾</h1>
-
       <div>
         <label htmlFor="ageFilter">Alter:</label>
         <select
@@ -112,15 +102,7 @@ function AnimalsPage() {
       {noResults && <p>Keine Ergebnisse gefunden.</p>}
 
       {/* Hier wird die List Komponente gerendert */}
-      <List items={filteredItems} />
-
-      {filteredItems.map((animal) => (
-        <>
-          <button onClick={() => handleFavorite(animal.id)}>
-            {/* Hier können Sie das SVG-Icon einfügen */}
-          </button>
-        </>
-      ))}
+      <List items={filteredItems} onBookmark={handleBookmark} />
 
       <Link href="/">Zurück</Link>
       <br></br>

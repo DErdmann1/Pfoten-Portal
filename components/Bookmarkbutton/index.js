@@ -1,11 +1,17 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
-export default function BookmarkButton({ onBookmark }) {
+export default function BookmarkButton({ itemId, onBookmark }) {
   const [isBookmarked, setIsBookmarked] = useState(false);
+
+  // Lese den aktuellen Lesezeichenstatus des Tieres aus dem Local Storage
+  useEffect(() => {
+    const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+    setIsBookmarked(favorites.includes(itemId));
+  }, [itemId]);
 
   const handleClick = () => {
     setIsBookmarked(!isBookmarked);
-    onBookmark(!isBookmarked);
+    onBookmark(itemId, !isBookmarked);
   };
 
   return (
