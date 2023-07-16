@@ -104,7 +104,6 @@ function DogsPage() {
 
       {noResults && <p>Keine Ergebnisse gefunden.</p>}
 
-      {/* Hier wird die List Komponente gerendert */}
       <List items={filteredItems} onBookmark={handleBookmark} />
 
       <Link href="/">Zurück</Link>

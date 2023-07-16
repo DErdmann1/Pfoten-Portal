@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import BookmarkButton from "../Bookmarkbutton"; // Importieren der BookmarkButton-Komponente
+import BookmarkButton from "../Bookmarkbutton";
 
 export default function List({ items, onBookmark }) {
   const handleBookmark = (itemId, isBookmarked) => {
@@ -25,7 +25,6 @@ export default function List({ items, onBookmark }) {
           <p>Rasse: {item.breed}</p>
           <p>Standort: {item.location}</p>
 
-          {/* Hier wird die BookmarkButton-Komponente verwendet */}
           <BookmarkButton
             itemId={item.id}
             onBookmark={(isBookmarked) => handleBookmark(item.id, isBookmarked)}

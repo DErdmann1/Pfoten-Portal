@@ -72,7 +72,6 @@ export default function MoreDetailsPage() {
       <p>Ort: {animal.location}</p>
       <p>{animal.infoText}</p>
 
-      {/* Hier wird die BookmarkButton-Komponente verwendet */}
       <BookmarkButton onBookmark={handleBookmark} />
 
       {isSubmitted ? (

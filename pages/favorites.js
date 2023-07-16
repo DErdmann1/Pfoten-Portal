@@ -8,7 +8,6 @@ const animals = [...cats, ...dogs, ...smallanimals];
 export default function FavoritesPage() {
   const [favorites, setFavorites] = useState([]);
 
-  // Lade die Favoritenliste aus dem Local Storage beim ersten Rendern der Seite
   useEffect(() => {
     const storedFavorites = localStorage.getItem("favorites");
     if (storedFavorites) {
@@ -25,7 +24,6 @@ export default function FavoritesPage() {
     }
     setFavorites(newFavorites);
 
-    // Speichere die aktualisierte Favoritenliste im Local Storage
     localStorage.setItem("favorites", JSON.stringify(newFavorites));
   };
 
