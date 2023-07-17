@@ -23,29 +23,26 @@ export default function MoreDetailsPage() {
     message: "",
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
-  const [favorites, setFavorites] = useState([]);
+  const [isBookmarked, setIsBookmarked] = useState(false);
 
   const animal = [...cats, ...dogs, ...smallanimals].find(
     (animal) => animal.id === parseInt(id)
   );
 
   useEffect(() => {
-    const storedFavorites = localStorage.getItem("favorites");
-    if (storedFavorites) {
-      setFavorites(JSON.parse(storedFavorites));
-    }
-  }, []);
+    const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+    setIsBookmarked(favorites.includes(parseInt(id)));
+  }, [id]);
 
   const handleBookmark = () => {
-    let updatedFavorites;
-    if (favorites.includes(animal.id)) {
-      updatedFavorites = favorites.filter((favId) => favId !== animal.id);
+    setIsBookmarked(!isBookmarked);
+    let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+    if (isBookmarked) {
+      favorites = favorites.filter((favId) => favId !== parseInt(id));
     } else {
-      updatedFavorites = [...favorites, animal.id];
+      favorites.push(parseInt(id));
     }
-    setFavorites(updatedFavorites);
-
-    localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
+    localStorage.setItem("favorites", JSON.stringify(favorites));
   };
 
   const handleSubmit = (e) => {
@@ -83,8 +80,9 @@ export default function MoreDetailsPage() {
       <p>{animal.infoText}</p>
 
       <BookmarkButton
+        itemId={animal.id}
+        isBookmarked={isBookmarked}
         onBookmark={handleBookmark}
-        isBookmarked={favorites.includes(animal.id)}
       />
 
       {isSubmitted ? (
