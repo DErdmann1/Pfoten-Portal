@@ -1,9 +1,15 @@
-// dogs.js
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import List from "../components/Doglist/index.js";
 import dogs from "../lib/dog_data.js";
 import Footer from "../components/Footer/index.js";
+import Image from "next/image";
+import Header from "../components/Header";
+import styled from "styled-components";
+
+const StyledMain = styled.main`
+  padding-bottom: 60px; /* Hier den gewünschten Abstand einstellen */
+`;
 
 function DogsPage() {
   const [filteredItems, setFilteredItems] = useState(dogs);
@@ -55,7 +61,8 @@ function DogsPage() {
   };
 
   return (
-    <main>
+    <StyledMain>
+      <Header />
       <h1>🐾 PfotenPortal 🐾</h1>
       <div>
         <label htmlFor="ageFilter">Alter:</label>
@@ -106,7 +113,7 @@ function DogsPage() {
       <Link href="/">Zurück</Link>
       <br />
       <Footer />
-    </main>
+    </StyledMain>
   );
 }
 

@@ -8,9 +8,14 @@ import smallanimals from "../../lib/smallanimals_data";
 import Link from "next/link";
 import Footer from "../../components/Footer/index.js";
 import BookmarkButton from "../../components/Bookmarkbutton/index.js";
+import Header from "../../components/Header";
 
 const StyledH1 = styled.h1`
   text-align: center;
+`;
+
+const Container = styled.div`
+  padding-bottom: 60px; /* Hier den gewünschten Abstand einstellen */
 `;
 
 export default function MoreDetailsPage() {
@@ -70,7 +75,8 @@ export default function MoreDetailsPage() {
   }
 
   return (
-    <div>
+    <Container>
+      <Header />
       <StyledH1>{animal.name}</StyledH1>
       <Image src={animal.image} alt={animal.name} width={500} height={500} />
       <p>Alter: {animal.age}</p>
@@ -142,6 +148,6 @@ export default function MoreDetailsPage() {
       <Link href="/">Zurück</Link>
       <br />
       <Footer />
-    </div>
+    </Container>
   );
 }
