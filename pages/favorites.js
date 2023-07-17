@@ -2,8 +2,6 @@ import { useState, useEffect } from "react";
 import cats from "../lib/cat_data.js";
 import dogs from "../lib/dog_data.js";
 import smallanimals from "../lib/smallanimals_data.js";
-import Link from "next/link";
-import Image from "next/image";
 import Header from "../components/Header";
 import styled from "styled-components";
 

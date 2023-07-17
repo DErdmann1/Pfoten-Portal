@@ -3,7 +3,6 @@ import Link from "next/link";
 import List from "../components/Smallanimallist/index.js";
 import smallanimals from "../lib/smallanimals_data.js";
 import Footer from "../components/Footer/index.js";
-import Image from "next/image";
 import Header from "../components/Header";
 
 function SmallAnimalsPage() {

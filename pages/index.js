@@ -1,6 +1,5 @@
 import React from "react";
 import Link from "next/link";
-import Image from "next/image";
 import Footer from "../components/Footer/index.js";
 import Header from "../components/Header";
 import styled from "styled-components";

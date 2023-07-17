@@ -3,7 +3,6 @@ import Link from "next/link";
 import List from "../components/Catlist/index.js";
 import cats from "../lib/cat_data.js";
 import Footer from "../components/Footer/index.js";
-import Image from "next/image";
 import Header from "../components/Header";
 
 function CatsPage() {

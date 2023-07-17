@@ -3,7 +3,6 @@ import Link from "next/link";
 import List from "../components/Doglist/index.js";
 import dogs from "../lib/dog_data.js";
 import Footer from "../components/Footer/index.js";
-import Image from "next/image";
 import Header from "../components/Header";
 
 function DogsPage() {
