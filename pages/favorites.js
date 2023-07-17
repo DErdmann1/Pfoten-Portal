@@ -4,6 +4,7 @@ import dogs from "../lib/dog_data.js";
 import smallanimals from "../lib/smallanimals_data.js";
 import Link from "next/link";
 import Image from "next/image";
+import Header from "../components/Header";
 
 const animals = [...cats, ...dogs, ...smallanimals];
 
@@ -35,9 +36,7 @@ export default function FavoritesPage() {
 
   return (
     <div>
-      <Link href="/">
-        <Image src="/images/logo1.png" alt="Logo" width={200} height={100} />
-      </Link>
+      <Header />
       <h1>Favoriten</h1>
       <ul>
         {favoriteAnimals.map((animal) => (

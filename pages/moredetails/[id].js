@@ -8,6 +8,7 @@ import smallanimals from "../../lib/smallanimals_data";
 import Link from "next/link";
 import Footer from "../../components/Footer/index.js";
 import BookmarkButton from "../../components/Bookmarkbutton/index.js";
+import Header from "../../components/Header";
 
 const StyledH1 = styled.h1`
   text-align: center;
@@ -71,9 +72,7 @@ export default function MoreDetailsPage() {
 
   return (
     <div>
-      <Link href="/">
-        <Image src="/images/logo1.png" alt="Logo" width={200} height={100} />
-      </Link>
+      <Header />
       <StyledH1>{animal.name}</StyledH1>
       <Image src={animal.image} alt={animal.name} width={500} height={500} />
       <p>Alter: {animal.age}</p>

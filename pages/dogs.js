@@ -1,10 +1,10 @@
-// dogs.js
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import List from "../components/Doglist/index.js";
 import dogs from "../lib/dog_data.js";
 import Footer from "../components/Footer/index.js";
 import Image from "next/image";
+import Header from "../components/Header";
 
 function DogsPage() {
   const [filteredItems, setFilteredItems] = useState(dogs);
@@ -57,9 +57,7 @@ function DogsPage() {
 
   return (
     <main>
-      <Link href="/">
-        <Image src="/images/logo1.png" alt="Logo" width={200} height={100} />
-      </Link>
+      <Header />
       <h1>🐾 PfotenPortal 🐾</h1>
       <div>
         <label htmlFor="ageFilter">Alter:</label>
