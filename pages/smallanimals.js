@@ -4,6 +4,7 @@ import Link from "next/link";
 import List from "../components/Smallanimallist/index.js";
 import smallanimals from "../lib/smallanimals_data.js";
 import Footer from "../components/Footer/index.js";
+import Image from "next/image";
 
 function SmallAnimalsPage() {
   const [filteredItems, setFilteredItems] = useState(smallanimals);
@@ -64,6 +65,9 @@ function SmallAnimalsPage() {
 
   return (
     <main>
+      <Link href="/">
+        <Image src="/images/logo1.png" alt="Logo" width={200} height={100} />
+      </Link>
       <h1>🐾 PfotenPortal 🐾</h1>
 
       <div>

@@ -4,6 +4,7 @@ import Link from "next/link";
 import List from "../components/Catlist/index.js";
 import cats from "../lib/cat_data.js";
 import Footer from "../components/Footer/index.js";
+import Image from "next/image";
 
 function CatsPage() {
   const [filteredItems, setFilteredItems] = useState(cats);
@@ -56,6 +57,9 @@ function CatsPage() {
 
   return (
     <main>
+      <Link href="/">
+        <Image src="/images/logo1.png" alt="Logo" width={200} height={100} />
+      </Link>
       <h1>🐾 PfotenPortal 🐾</h1>
       <div>
         <label htmlFor="ageFilter">Alter:</label>

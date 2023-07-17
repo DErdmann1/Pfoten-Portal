@@ -71,6 +71,9 @@ export default function MoreDetailsPage() {
 
   return (
     <div>
+      <Link href="/">
+        <Image src="/images/logo1.png" alt="Logo" width={200} height={100} />
+      </Link>
       <StyledH1>{animal.name}</StyledH1>
       <Image src={animal.image} alt={animal.name} width={500} height={500} />
       <p>Alter: {animal.age}</p>
