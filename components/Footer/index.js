@@ -9,6 +9,8 @@ const StyledFooter = styled.footer`
   height: 50px;
   text-align: center;
   border-top: 2px solid black;
+  background-color: white;
+  z-index: 1;
 `;
 
 export default function Footer() {
