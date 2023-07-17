@@ -5,11 +5,6 @@ import cats from "../lib/cat_data.js";
 import Footer from "../components/Footer/index.js";
 import Image from "next/image";
 import Header from "../components/Header";
-import styled from "styled-components";
-
-const StyledMain = styled.main`
-  padding-bottom: 60px; /* Hier den gewünschten Abstand einstellen */
-`;
 
 function CatsPage() {
   const [filteredItems, setFilteredItems] = useState(cats);
@@ -19,6 +14,13 @@ function CatsPage() {
   const [noResults, setNoResults] = useState(false);
   const [favorites, setFavorites] = useState([]);
 
+  useEffect(() => {
+    const storedFavorites = localStorage.getItem("favorites");
+    if (storedFavorites) {
+      setFavorites(JSON.parse(storedFavorites));
+    }
+  }, []);
+
   const handleBookmark = (id) => {
     let newFavorites;
     if (favorites.includes(id)) {
@@ -27,6 +29,7 @@ function CatsPage() {
       newFavorites = [...favorites, id];
     }
     setFavorites(newFavorites);
+    localStorage.setItem("favorites", JSON.stringify(newFavorites));
   };
 
   const handleFilter = () => {
@@ -61,7 +64,7 @@ function CatsPage() {
   };
 
   return (
-    <StyledMain>
+    <main>
       <Header />
       <h1>🐾 PfotenPortal 🐾</h1>
       <div>
@@ -113,7 +116,7 @@ function CatsPage() {
       <Link href="/">Zurück</Link>
       <br />
       <Footer />
-    </StyledMain>
+    </main>
   );
 }
 
