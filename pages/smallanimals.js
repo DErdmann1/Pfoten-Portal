@@ -5,6 +5,11 @@ import smallanimals from "../lib/smallanimals_data.js";
 import Footer from "../components/Footer/index.js";
 import Image from "next/image";
 import Header from "../components/Header";
+import styled from "styled-components";
+
+const StyledSmallAnimalsPage = styled.main`
+  padding-bottom: 60px; /* Hier den gewünschten Abstand einstellen */
+`;
 
 function SmallAnimalsPage() {
   const [filteredItems, setFilteredItems] = useState(smallanimals);
@@ -64,7 +69,7 @@ function SmallAnimalsPage() {
   };
 
   return (
-    <main>
+    <StyledSmallAnimalsPage>
       <Header />
       <h1>🐾 PfotenPortal 🐾</h1>
 
@@ -132,7 +137,7 @@ function SmallAnimalsPage() {
       <Link href="/">Zurück</Link>
       <br />
       <Footer />
-    </main>
+    </StyledSmallAnimalsPage>
   );
 }
 

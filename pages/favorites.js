@@ -5,6 +5,11 @@ import smallanimals from "../lib/smallanimals_data.js";
 import Link from "next/link";
 import Image from "next/image";
 import Header from "../components/Header";
+import styled from "styled-components";
+
+const StyledFavoritesPage = styled.div`
+  padding-bottom: 60px; /* Hier den gewünschten Abstand einstellen */
+`;
 
 const animals = [...cats, ...dogs, ...smallanimals];
 
@@ -35,7 +40,7 @@ export default function FavoritesPage() {
   );
 
   return (
-    <div>
+    <StyledFavoritesPage>
       <Header />
       <h1>Favoriten</h1>
       <ul>
@@ -56,6 +61,6 @@ export default function FavoritesPage() {
           </li>
         ))}
       </ul>
-    </div>
+    </StyledFavoritesPage>
   );
 }
