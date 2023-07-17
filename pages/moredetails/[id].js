@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import styled from "styled-components";
 import cats from "../../lib/cat_data";
 import dogs from "../../lib/dog_data";
@@ -23,19 +23,29 @@ export default function MoreDetailsPage() {
     message: "",
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [favorites, setFavorites] = useState([]);
 
   const animal = [...cats, ...dogs, ...smallanimals].find(
     (animal) => animal.id === parseInt(id)
   );
 
-  const handleBookmark = (isBookmarked) => {
-    let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
-    if (isBookmarked) {
-      favorites.push(animal.id);
-    } else {
-      favorites = favorites.filter((favId) => favId !== animal.id);
+  useEffect(() => {
+    const storedFavorites = localStorage.getItem("favorites");
+    if (storedFavorites) {
+      setFavorites(JSON.parse(storedFavorites));
     }
-    localStorage.setItem("favorites", JSON.stringify(favorites));
+  }, []);
+
+  const handleBookmark = () => {
+    let updatedFavorites;
+    if (favorites.includes(animal.id)) {
+      updatedFavorites = favorites.filter((favId) => favId !== animal.id);
+    } else {
+      updatedFavorites = [...favorites, animal.id];
+    }
+    setFavorites(updatedFavorites);
+
+    localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
   };
 
   const handleSubmit = (e) => {
@@ -72,7 +82,10 @@ export default function MoreDetailsPage() {
       <p>Ort: {animal.location}</p>
       <p>{animal.infoText}</p>
 
-      <BookmarkButton onBookmark={handleBookmark} />
+      <BookmarkButton
+        onBookmark={handleBookmark}
+        isBookmarked={favorites.includes(animal.id)}
+      />
 
       {isSubmitted ? (
         <p>
@@ -127,9 +140,9 @@ export default function MoreDetailsPage() {
           <button type="submit">Senden</button>
         </form>
       )}
-      <br></br>
+      <br />
       <Link href="/">Zurück</Link>
-      <br></br>
+      <br />
       <Footer />
     </div>
   );
