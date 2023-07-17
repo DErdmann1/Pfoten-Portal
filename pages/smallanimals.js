@@ -5,11 +5,6 @@ import smallanimals from "../lib/smallanimals_data.js";
 import Footer from "../components/Footer/index.js";
 import Image from "next/image";
 import Header from "../components/Header";
-import styled from "styled-components";
-
-const StyledSmallAnimalsPage = styled.main`
-  padding-bottom: 60px; /* Hier den gewünschten Abstand einstellen */
-`;
 
 function SmallAnimalsPage() {
   const [filteredItems, setFilteredItems] = useState(smallanimals);
@@ -20,6 +15,13 @@ function SmallAnimalsPage() {
   const [noResults, setNoResults] = useState(false);
   const [favorites, setFavorites] = useState([]);
 
+  useEffect(() => {
+    const storedFavorites = localStorage.getItem("favorites");
+    if (storedFavorites) {
+      setFavorites(JSON.parse(storedFavorites));
+    }
+  }, []);
+
   const handleBookmark = (id) => {
     let newFavorites;
     if (favorites.includes(id)) {
@@ -28,6 +30,7 @@ function SmallAnimalsPage() {
       newFavorites = [...favorites, id];
     }
     setFavorites(newFavorites);
+    localStorage.setItem("favorites", JSON.stringify(newFavorites));
   };
 
   const handleFilter = () => {
@@ -69,7 +72,7 @@ function SmallAnimalsPage() {
   };
 
   return (
-    <StyledSmallAnimalsPage>
+    <main>
       <Header />
       <h1>🐾 PfotenPortal 🐾</h1>
 
@@ -137,7 +140,7 @@ function SmallAnimalsPage() {
       <Link href="/">Zurück</Link>
       <br />
       <Footer />
-    </StyledSmallAnimalsPage>
+    </main>
   );
 }
 

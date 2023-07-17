@@ -5,11 +5,6 @@ import dogs from "../lib/dog_data.js";
 import Footer from "../components/Footer/index.js";
 import Image from "next/image";
 import Header from "../components/Header";
-import styled from "styled-components";
-
-const StyledMain = styled.main`
-  padding-bottom: 60px; /* Hier den gewünschten Abstand einstellen */
-`;
 
 function DogsPage() {
   const [filteredItems, setFilteredItems] = useState(dogs);
@@ -19,6 +14,13 @@ function DogsPage() {
   const [noResults, setNoResults] = useState(false);
   const [favorites, setFavorites] = useState([]);
 
+  useEffect(() => {
+    const storedFavorites = localStorage.getItem("favorites");
+    if (storedFavorites) {
+      setFavorites(JSON.parse(storedFavorites));
+    }
+  }, []);
+
   const handleBookmark = (id) => {
     let newFavorites;
     if (favorites.includes(id)) {
@@ -27,6 +29,7 @@ function DogsPage() {
       newFavorites = [...favorites, id];
     }
     setFavorites(newFavorites);
+    localStorage.setItem("favorites", JSON.stringify(newFavorites));
   };
 
   const handleFilter = () => {
@@ -61,7 +64,7 @@ function DogsPage() {
   };
 
   return (
-    <StyledMain>
+    <main>
       <Header />
       <h1>🐾 PfotenPortal 🐾</h1>
       <div>
@@ -113,7 +116,7 @@ function DogsPage() {
       <Link href="/">Zurück</Link>
       <br />
       <Footer />
-    </StyledMain>
+    </main>
   );
 }
 
