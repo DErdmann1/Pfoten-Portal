@@ -5,16 +5,21 @@ import styled from "styled-components";
 const StyledHeader = styled.header`
   background-color: #987554;
   margin-top: 0;
+  padding: 20px;
+  text-align: center;
 `;
 
-const Header = () => {
+const Logo = styled.p`
+  font-size: 24px;
+  color: white;
+`;
+
+export default function Header() {
   return (
     <StyledHeader>
       <Link href="/">
-        <p>🐾 PfotenPortal 🐾</p>
+        <Logo>🐾 PfotenPortal 🐾</Logo>
       </Link>
     </StyledHeader>
   );
-};
-
-export default Header;
+}
