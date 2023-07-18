@@ -17,7 +17,7 @@ const StyledFooter = styled.footer`
 `;
 
 const Copyright = styled.p`
-  color: white;
+  color: black;
 `;
 
 export default function Footer() {
