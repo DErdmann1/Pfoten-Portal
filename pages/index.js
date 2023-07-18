@@ -1,5 +1,4 @@
 import React from "react";
-import Link from "next/link";
 import Footer from "../components/Footer/index.js";
 import styled from "styled-components";
 
@@ -23,7 +22,7 @@ const StyledHomePage = styled.main`
   align-items: center;
 `;
 
-const Button = styled.button`
+const Button = styled.a`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -43,21 +42,13 @@ export default function HomePage() {
   return (
     <>
       <StyledHeader>
-        <Link href="/">
-          <Logo>🐾 PfotenPortal 🐾</Logo>
-        </Link>
+        <Logo>🐾 PfotenPortal 🐾</Logo>
       </StyledHeader>
       <StyledHomePage>
         <h1>🐾 PfotenPortal 🐾</h1>
-        <Link href="/dogs">
-          <Button>Zu unseren Hunden</Button>
-        </Link>
-        <Link href="/cats">
-          <Button>Zu unseren Katzen</Button>
-        </Link>
-        <Link href="/smallanimals">
-          <Button>Zu unseren Kleintieren</Button>
-        </Link>
+        <Button href="/dogs">Zu unseren Hunden</Button>
+        <Button href="/cats">Zu unseren Katzen</Button>
+        <Button href="/smallanimals">Zu unseren Kleintieren</Button>
         <Footer />
       </StyledHomePage>
     </>
