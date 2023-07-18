@@ -4,6 +4,11 @@ import List from "../components/Smallanimallist/index.js";
 import smallanimals from "../lib/smallanimals_data.js";
 import Footer from "../components/Footer/index.js";
 import Header from "../components/Header";
+import styled from "styled-components";
+
+const StyledMain = styled.main`
+  padding-bottom: 60px;
+`;
 
 function SmallAnimalsPage() {
   const [filteredItems, setFilteredItems] = useState(smallanimals);
@@ -71,7 +76,7 @@ function SmallAnimalsPage() {
   };
 
   return (
-    <main>
+    <StyledMain>
       <Header />
       <h1>🐾 PfotenPortal 🐾</h1>
 
@@ -139,7 +144,7 @@ function SmallAnimalsPage() {
       <Link href="/">Zurück</Link>
       <br />
       <Footer />
-    </main>
+    </StyledMain>
   );
 }
 

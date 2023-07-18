@@ -6,7 +6,7 @@ import Header from "../components/Header";
 import styled from "styled-components";
 
 const StyledFavoritesPage = styled.div`
-  padding-bottom: 60px; /* Hier den gewünschten Abstand einstellen */
+  padding-bottom: 60px;
 `;
 
 const animals = [...cats, ...dogs, ...smallanimals];

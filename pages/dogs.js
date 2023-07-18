@@ -4,6 +4,11 @@ import List from "../components/Doglist/index.js";
 import dogs from "../lib/dog_data.js";
 import Footer from "../components/Footer/index.js";
 import Header from "../components/Header";
+import styled from "styled-components";
+
+const StyledMain = styled.main`
+  padding-bottom: 60px;
+`;
 
 function DogsPage() {
   const [filteredItems, setFilteredItems] = useState(dogs);
@@ -63,7 +68,7 @@ function DogsPage() {
   };
 
   return (
-    <main>
+    <StyledMain>
       <Header />
       <h1>🐾 PfotenPortal 🐾</h1>
       <div>
@@ -115,7 +120,7 @@ function DogsPage() {
       <Link href="/">Zurück</Link>
       <br />
       <Footer />
-    </main>
+    </StyledMain>
   );
 }
 

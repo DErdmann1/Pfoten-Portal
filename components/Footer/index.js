@@ -2,7 +2,6 @@ import styled from "styled-components";
 import Link from "next/link";
 
 const StyledFooter = styled.footer`
-  position: fixed;
   bottom: 0;
   left: 0;
   right: 0;
@@ -14,6 +13,7 @@ const StyledFooter = styled.footer`
   display: flex;
   justify-content: space-evenly;
   align-items: center;
+  position: fixed;
 `;
 
 const Copyright = styled.p`
