@@ -4,9 +4,10 @@ import dogs from "../lib/dog_data.js";
 import smallanimals from "../lib/smallanimals_data.js";
 import Header from "../components/Header";
 import styled from "styled-components";
+import Footer from "../components/Footer/index.js";
 
 const StyledFavoritesPage = styled.div`
-  padding-bottom: 60px; /* Hier den gewünschten Abstand einstellen */
+  padding-bottom: 60px;
 `;
 
 const animals = [...cats, ...dogs, ...smallanimals];
@@ -59,6 +60,7 @@ export default function FavoritesPage() {
           </li>
         ))}
       </ul>
+      <Footer />
     </StyledFavoritesPage>
   );
 }

@@ -1,22 +1,56 @@
 import React from "react";
-import Link from "next/link";
 import Footer from "../components/Footer/index.js";
-import Header from "../components/Header";
 import styled from "styled-components";
 
+const StyledHeader = styled.header`
+  background-color: #987554;
+  width: 100%;
+  padding: 20px;
+  text-align: center;
+`;
+
+const Logo = styled.p`
+  font-size: 24px;
+  color: black;
+`;
+
 const StyledHomePage = styled.main`
-  padding-bottom: 60px; /* Hier den gewünschten Abstand einstellen */
+  padding-bottom: 60px;
+  background-color: #e5d3b3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+const Button = styled.a`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #987554;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 20px;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 20px;
 `;
 
 export default function HomePage() {
   return (
-    <StyledHomePage>
-      <Header />
-      <h1>🐾 PfotenPortal 🐾</h1>
-      <Link href="/dogs">Zu unseren Hunden</Link>
-      <Link href="/cats">Zu unseren Katzen</Link>
-      <Link href="/smallanimals">Zu unseren Kleintieren</Link>
-      <Footer />
-    </StyledHomePage>
+    <>
+      <StyledHeader>
+        <Logo>🐾 PfotenPortal 🐾</Logo>
+      </StyledHeader>
+      <StyledHomePage>
+        <h1>🐾 PfotenPortal 🐾</h1>
+        <Button href="/dogs">Zu unseren Hunden</Button>
+        <Button href="/cats">Zu unseren Katzen</Button>
+        <Button href="/smallanimals">Zu unseren Kleintieren</Button>
+        <Footer />
+      </StyledHomePage>
+    </>
   );
 }

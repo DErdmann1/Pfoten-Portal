@@ -4,6 +4,11 @@ import List from "../components/Catlist/index.js";
 import cats from "../lib/cat_data.js";
 import Footer from "../components/Footer/index.js";
 import Header from "../components/Header";
+import styled from "styled-components";
+
+const StyledMain = styled.main`
+  padding-bottom: 60px;
+`;
 
 function CatsPage() {
   const [filteredItems, setFilteredItems] = useState(cats);
@@ -63,7 +68,7 @@ function CatsPage() {
   };
 
   return (
-    <main>
+    <StyledMain>
       <Header />
       <h1>🐾 PfotenPortal 🐾</h1>
       <div>
@@ -115,7 +120,7 @@ function CatsPage() {
       <Link href="/">Zurück</Link>
       <br />
       <Footer />
-    </main>
+    </StyledMain>
   );
 }
 

@@ -1,15 +1,24 @@
-import Image from "next/image";
 import React from "react";
 import Link from "next/link";
+import styled from "styled-components";
 
-const Header = () => {
+const StyledHeader = styled.header`
+  background-color: #987554;
+  padding: 20px;
+  text-align: center;
+`;
+
+const Logo = styled.p`
+  font-size: 24px;
+  color: white;
+`;
+
+export default function Header() {
   return (
-    <header>
+    <StyledHeader>
       <Link href="/">
-        <Image src="/images/logo1.png" alt="Logo" width={200} height={100} />
+        <Logo>🐾 PfotenPortal 🐾</Logo>
       </Link>
-    </header>
+    </StyledHeader>
   );
-};
-
-export default Header;
+}
