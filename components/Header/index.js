@@ -4,7 +4,6 @@ import styled from "styled-components";
 
 const StyledHeader = styled.header`
   background-color: #987554;
-  margin-top: 0;
   padding: 20px;
   text-align: center;
 `;
