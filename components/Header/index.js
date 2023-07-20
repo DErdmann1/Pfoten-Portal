@@ -7,6 +7,7 @@ const StyledHeader = styled.header`
   padding: 20px;
   text-align: center;
   width: 100%;
+  border-bottom: 2px solid black;
 `;
 
 const Logo = styled.p`
