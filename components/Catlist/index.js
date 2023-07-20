@@ -22,7 +22,13 @@ export default function List({ items, onBookmark }) {
       {items.map((item) => (
         <li key={item.id}>
           <h3>{item.name}</h3>
-          <Image src={item.image} alt={item.name} width={500} height={500} />
+          <Image
+            src={item.image}
+            alt={item.name}
+            width={375}
+            height={375}
+            layout="responsive"
+          />
           <p>Alter: {item.age}</p>
           <p>Geschlecht: {item.gender}</p>
           <p>Rasse: {item.breed}</p>

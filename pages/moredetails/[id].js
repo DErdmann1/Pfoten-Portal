@@ -15,7 +15,7 @@ const StyledH1 = styled.h1`
 `;
 
 const Container = styled.div`
-  padding-bottom: 60px; /* Hier den gewünschten Abstand einstellen */
+  padding-bottom: 60px;
 `;
 
 export default function MoreDetailsPage() {

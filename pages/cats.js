@@ -5,11 +5,11 @@ import cats from "../lib/cat_data.js";
 import Footer from "../components/Footer/index.js";
 import Header from "../components/Header";
 import styled from "styled-components";
+import Image from "next/image";
 
 const StyledMain = styled.main`
   padding-bottom: 60px;
 `;
-
 function CatsPage() {
   const [filteredItems, setFilteredItems] = useState(cats);
   const [ageFilter, setAgeFilter] = useState("");
@@ -115,7 +115,13 @@ function CatsPage() {
 
       {noResults && <p>Keine Ergebnisse gefunden.</p>}
 
-      <List items={filteredItems} onBookmark={handleBookmark} />
+      <List
+        items={filteredItems}
+        onBookmark={handleBookmark}
+        ImageComponent={Image}
+        width={200}
+        height={200}
+      />
 
       <Link href="/">Zurück</Link>
       <br />

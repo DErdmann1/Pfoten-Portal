@@ -6,11 +6,13 @@ const StyledHeader = styled.header`
   background-color: #987554;
   padding: 20px;
   text-align: center;
+  width: 100%;
 `;
 
 const Logo = styled.p`
   font-size: 24px;
   color: white;
+  width: 100%;
 `;
 
 export default function Header() {
