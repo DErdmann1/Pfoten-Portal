@@ -1,8 +1,15 @@
-import Image from "next/image";
+import React from "react";
 import Link from "next/link";
 import BookmarkButton from "../Bookmarkbutton";
+import Image from "next/image";
+import styled from "styled-components";
 
-export default function List({ items, onBookmark }) {
+const ListContainer = styled.ul`
+  list-style-type: none;
+  padding: 0;
+`;
+
+export default function Catlist({ items, onBookmark }) {
   const handleBookmark = (itemId, isBookmarked) => {
     console.log(
       `handleBookmark called with itemId: ${itemId}, isBookmarked: ${isBookmarked}`
@@ -18,17 +25,11 @@ export default function List({ items, onBookmark }) {
   };
 
   return (
-    <ul>
+    <ListContainer>
       {items.map((item) => (
         <li key={item.id}>
           <h3>{item.name}</h3>
-          <Image
-            src={item.image}
-            alt={item.name}
-            width={375}
-            height={375}
-            layout="responsive"
-          />
+          <Image src={item.image} alt={item.name} width={375} height={375} />
           <p>Alter: {item.age}</p>
           <p>Geschlecht: {item.gender}</p>
           <p>Rasse: {item.breed}</p>
@@ -44,6 +45,6 @@ export default function List({ items, onBookmark }) {
           </Link>
         </li>
       ))}
-    </ul>
+    </ListContainer>
   );
 }

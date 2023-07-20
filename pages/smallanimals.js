@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
-import List from "../components/Smallanimallist/index.js";
+import SmallAnimalList from "../components/Smallanimallist/index.js";
 import smallanimals from "../lib/smallanimals_data.js";
 import Footer from "../components/Footer/index.js";
 import Header from "../components/Header";
@@ -14,7 +14,6 @@ function SmallAnimalsPage() {
   const [filteredItems, setFilteredItems] = useState(smallanimals);
   const [ageFilter, setAgeFilter] = useState("");
   const [genderFilter, setGenderFilter] = useState("");
-  const [speciesFilter, setSpeciesFilter] = useState("");
   const [locationFilter, setLocationFilter] = useState("");
   const [noResults, setNoResults] = useState(false);
   const [favorites, setFavorites] = useState([]);
@@ -42,13 +41,6 @@ function SmallAnimalsPage() {
       if (
         genderFilter &&
         item.gender.toLowerCase() !== genderFilter.toLowerCase()
-      ) {
-        return false;
-      }
-
-      if (
-        speciesFilter &&
-        item.species.toLowerCase() !== speciesFilter.toLowerCase()
       ) {
         return false;
       }
@@ -108,20 +100,6 @@ function SmallAnimalsPage() {
       </div>
 
       <div>
-        <label htmlFor="speciesFilter">Art:</label>
-        <select
-          id="speciesFilter"
-          value={speciesFilter}
-          onChange={(e) => setSpeciesFilter(e.target.value)}
-        >
-          <option value="">Alle</option>
-          <option value="Kleintier">Kleintier</option>
-          <option value="Reptil">Reptil</option>
-          <option value="Vogel">Vogel</option>
-        </select>
-      </div>
-
-      <div>
         <label htmlFor="locationFilter">Standort:</label>
         <select
           id="locationFilter"
@@ -139,7 +117,11 @@ function SmallAnimalsPage() {
 
       {noResults && <p>Keine Ergebnisse gefunden.</p>}
 
-      <List items={filteredItems} onBookmark={handleBookmark} />
+      <SmallAnimalList
+        items={filteredItems}
+        onBookmark={handleBookmark}
+        favorites={favorites}
+      />
 
       <Link href="/">Zurück</Link>
       <br />

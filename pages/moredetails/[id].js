@@ -78,7 +78,12 @@ export default function MoreDetailsPage() {
     <Container>
       <Header />
       <StyledH1>{animal.name}</StyledH1>
-      <Image src={animal.image} alt={animal.name} width={500} height={500} />
+      <Image
+        src={animal.image}
+        alt={animal.name}
+        width={animal.imageWidth}
+        height={animal.imageHeight}
+      />
       <p>Alter: {animal.age}</p>
       <p>Geschlecht: {animal.gender}</p>
       <p>Rasse: {animal.breed}</p>

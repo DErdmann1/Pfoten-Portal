@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
-import List from "../components/Doglist/index.js";
+import DogList from "../components/Doglist/index.js";
 import dogs from "../lib/dog_data.js";
 import Footer from "../components/Footer/index.js";
 import Header from "../components/Header";
@@ -8,9 +8,12 @@ import styled from "styled-components";
 
 const StyledMain = styled.main`
   padding-bottom: 60px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 
-function DogsPage() {
+export default function DogsPage() {
   const [filteredItems, setFilteredItems] = useState(dogs);
   const [ageFilter, setAgeFilter] = useState("");
   const [genderFilter, setGenderFilter] = useState("");
@@ -115,7 +118,7 @@ function DogsPage() {
 
       {noResults && <p>Keine Ergebnisse gefunden.</p>}
 
-      <List items={filteredItems} onBookmark={handleBookmark} />
+      <DogList items={filteredItems} onBookmark={handleBookmark} />
 
       <Link href="/">Zurück</Link>
       <br />
@@ -123,5 +126,3 @@ function DogsPage() {
     </StyledMain>
   );
 }
-
-export default DogsPage;
