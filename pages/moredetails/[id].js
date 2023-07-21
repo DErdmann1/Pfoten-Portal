@@ -76,7 +76,7 @@ export default function MoreDetailsPage() {
 
   return (
     <Container>
-      <Header />
+      <Header showSearch={false} />
       <StyledH1>{animal.name}</StyledH1>
       <Image
         src={animal.image}
