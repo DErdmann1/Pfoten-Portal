@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import DogList from "../components/Doglist/index.js";
 import dogs from "../lib/dog_data.js";
@@ -143,7 +143,11 @@ export default function DogsPage() {
 
       {noResults && <p>Keine Ergebnisse gefunden.</p>}
 
-      <DogList items={filteredItems} onBookmark={handleBookmark} />
+      <DogList
+        items={filteredItems}
+        onBookmark={handleBookmark}
+        favorites={favorites}
+      />
 
       <Link href="/">Zurück</Link>
       <br />

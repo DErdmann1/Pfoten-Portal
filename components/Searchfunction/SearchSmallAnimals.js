@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
 export default function SearchSmallAnimals({ onSearch }) {
   const [input, setInput] = useState("");
 
-  const handleSearch = () => {
-    onSearch(input);
+  const handleSearch = (e) => {
+    setInput(e.target.value);
+    onSearch(e.target.value);
   };
 
   return (
@@ -13,9 +14,9 @@ export default function SearchSmallAnimals({ onSearch }) {
         type="text"
         value={input}
         onChange={(e) => setInput(e.target.value)}
+        onInput={handleSearch}
         placeholder="Suche nach Kleintieren"
       />
-      <button onClick={handleSearch}>Suchen</button>
     </div>
   );
 }

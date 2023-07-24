@@ -1,11 +1,10 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import SmallAnimalList from "../components/Smallanimallist/index.js";
 import smallAnimals from "../lib/smallanimals_data.js";
 import Footer from "../components/Footer/index.js";
 import Header from "../components/Header";
 import styled from "styled-components";
-// Importiere die SearchSmallAnimals-Komponente aus dem components/Searchfunction-Ordner
 import SearchSmallAnimals from "../components/Searchfunction/SearchSmallAnimals.js";
 
 const StyledMain = styled.main`
@@ -22,7 +21,6 @@ export default function SmallAnimalsPage() {
   const [locationFilter, setLocationFilter] = useState("");
   const [noResults, setNoResults] = useState(false);
   const [favorites, setFavorites] = useState([]);
-  // Füge einen neuen State für die Sucheingabe hinzu
   const [searchInput, setSearchInput] = useState("");
 
   useEffect(() => {
@@ -43,7 +41,6 @@ export default function SmallAnimalsPage() {
     localStorage.setItem("favorites", JSON.stringify(newFavorites));
   };
 
-  // Füge eine neue Funktion hinzu, um die Sucheingabe zu verarbeiten
   const handleSearch = (input) => {
     setSearchInput(input);
     if (input === "") {
@@ -84,8 +81,6 @@ export default function SmallAnimalsPage() {
 
       return true;
     });
-
-    // Wende die Suchfilterung auf die gefilterte Liste an
     if (searchInput !== "") {
       filteredList = filteredList.filter((item) =>
         item.name.toLowerCase().includes(searchInput.toLowerCase())
@@ -101,7 +96,6 @@ export default function SmallAnimalsPage() {
       <Header />
       <h1>🐾 PfotenPortal 🐾</h1>
 
-      {/* Füge die SearchSmallAnimals-Komponente hier ein und übergebe die handleSearch-Funktion als Prop */}
       <SearchSmallAnimals onSearch={handleSearch} />
 
       <div>
@@ -148,7 +142,6 @@ export default function SmallAnimalsPage() {
 
       {noResults && <p>Keine Ergebnisse gefunden.</p>}
 
-      {/* Übergebe die favorites-Prop an die SmallAnimalList-Komponente */}
       <SmallAnimalList
         items={filteredItems}
         onBookmark={handleBookmark}

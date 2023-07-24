@@ -1,20 +1,16 @@
-import { useState, useEffect } from "react";
+import styled from "styled-components";
 
-export default function BookmarkButton({ itemId, onBookmark }) {
-  const [isBookmarked, setIsBookmarked] = useState(false);
+const StyledButton = styled.button`
+  /* Hier kannst du das Styling des Buttons anpassen */
+`;
 
-  useEffect(() => {
-    const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
-    setIsBookmarked(favorites.includes(itemId));
-  }, [itemId]);
-
+export default function BookmarkButton({ itemId, isBookmarked, onBookmark }) {
   const handleClick = () => {
-    setIsBookmarked(!isBookmarked);
-    onBookmark(itemId, !isBookmarked);
+    onBookmark(!isBookmarked);
   };
 
   return (
-    <button onClick={handleClick}>
+    <StyledButton onClick={handleClick}>
       {isBookmarked ? (
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -22,8 +18,8 @@ export default function BookmarkButton({ itemId, onBookmark }) {
           width="24"
           height="24"
         >
-          <title>bookmark</title>
-          <path d="M17,3H7A2,2 0 0,0 5,5V21L12,18L19,21V5A2,2 0 0,0 17,3Z" />
+          <title>star</title>
+          <path d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z" />
         </svg>
       ) : (
         <svg
@@ -32,10 +28,15 @@ export default function BookmarkButton({ itemId, onBookmark }) {
           width="24"
           height="24"
         >
-          <title>bookmark_border</title>
-          <path d="M17,5V19L12,16.5L7,19V5A2,2 0 0,1 9,3H15A2,2 0 0,1 17,5M17,1H7A4,4 0 0,0 3,5V21L12,17.5L21,21V5A4,4 0 0,0 17,1Z" />
+          <title>star</title>
+          <path
+            fill="none"
+            stroke="#000000"
+            strokeWidth="2"
+            d="M12 17.27l6.18 3.73-1.64-7.03L22 9.24l-7.19-.62L12 2l-2.81 6.62-7.19.62 4.64 4.73-1.64 7.03z"
+          />
         </svg>
       )}
-    </button>
+    </StyledButton>
   );
 }

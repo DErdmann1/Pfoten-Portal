@@ -1,4 +1,3 @@
-import React from "react";
 import Footer from "../components/Footer/index.js";
 import styled from "styled-components";
 

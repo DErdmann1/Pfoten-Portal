@@ -1,4 +1,3 @@
-import React from "react";
 import Link from "next/link";
 import BookmarkButton from "../Bookmarkbutton";
 import Image from "next/image";

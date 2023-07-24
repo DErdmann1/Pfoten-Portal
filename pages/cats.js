@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import List from "../components/Catlist/index.js";
 import cats from "../lib/cat_data.js";
