@@ -1,18 +1,21 @@
-import React from "react";
-import styled from "styled-components";
-import CatCard from "./CatCard";
-import cats from "../lib/cat_data";
+import React, { useState } from "react";
 
-const Container = styled.div`
-  padding-bottom: 60px;
-`;
+export default function SearchCats({ onSearch }) {
+  const [input, setInput] = useState("");
 
-export default function SearchCats() {
+  const handleSearch = () => {
+    onSearch(input);
+  };
+
   return (
-    <Container>
-      {cats.map((cat) => (
-        <CatCard key={cat.id} cat={cat} />
-      ))}
-    </Container>
+    <div>
+      <input
+        type="text"
+        value={input}
+        onChange={(e) => setInput(e.target.value)}
+        placeholder="Suche nach Katzen"
+      />
+      <button onClick={handleSearch}>Suchen</button>
+    </div>
   );
 }

@@ -1,18 +1,21 @@
-import React from "react";
-import styled from "styled-components";
-import SmallAnimalCard from "./SmallAnimalCard";
-import smallanimals from "../lib/smallanimals_data";
+import React, { useState } from "react";
 
-const Container = styled.div`
-  padding-bottom: 60px;
-`;
+export default function SearchSmallAnimals({ onSearch }) {
+  const [input, setInput] = useState("");
 
-export default function SearchSmallAnimals() {
+  const handleSearch = () => {
+    onSearch(input);
+  };
+
   return (
-    <Container>
-      {smallanimals.map((animal) => (
-        <SmallAnimalCard key={animal.id} animal={animal} />
-      ))}
-    </Container>
+    <div>
+      <input
+        type="text"
+        value={input}
+        onChange={(e) => setInput(e.target.value)}
+        placeholder="Suche nach Kleintieren"
+      />
+      <button onClick={handleSearch}>Suchen</button>
+    </div>
   );
 }

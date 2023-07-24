@@ -1,18 +1,21 @@
-import React from "react";
-import styled from "styled-components";
-import DogCard from "./DogCard";
-import dogs from "../lib/dog_data";
+import React, { useState } from "react";
 
-const Container = styled.div`
-  padding-bottom: 60px;
-`;
+export default function SearchDogs({ onSearch }) {
+  const [input, setInput] = useState("");
 
-export default function SearchDogs() {
+  const handleSearch = () => {
+    onSearch(input);
+  };
+
   return (
-    <Container>
-      {dogs.map((dog) => (
-        <DogCard key={dog.id} dog={dog} />
-      ))}
-    </Container>
+    <div>
+      <input
+        type="text"
+        value={input}
+        onChange={(e) => setInput(e.target.value)}
+        placeholder="Suche nach Hunden"
+      />
+      <button onClick={handleSearch}>Suchen</button>
+    </div>
   );
 }
