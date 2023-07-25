@@ -1,22 +1,27 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
-import List from "../components/Doglist/index.js";
+import DogList from "../components/Doglist/index.js";
 import dogs from "../lib/dog_data.js";
 import Footer from "../components/Footer/index.js";
 import Header from "../components/Header";
 import styled from "styled-components";
+import SearchDogs from "../components/Searchfunction/SearchDogs.js";
 
 const StyledMain = styled.main`
   padding-bottom: 60px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 
-function DogsPage() {
+export default function DogsPage() {
   const [filteredItems, setFilteredItems] = useState(dogs);
   const [ageFilter, setAgeFilter] = useState("");
   const [genderFilter, setGenderFilter] = useState("");
   const [locationFilter, setLocationFilter] = useState("");
   const [noResults, setNoResults] = useState(false);
   const [favorites, setFavorites] = useState([]);
+  const [searchInput, setSearchInput] = useState("");
 
   useEffect(() => {
     const storedFavorites = localStorage.getItem("favorites");
@@ -36,8 +41,22 @@ function DogsPage() {
     localStorage.setItem("favorites", JSON.stringify(newFavorites));
   };
 
+  const handleSearch = (input) => {
+    setSearchInput(input);
+    if (input === "") {
+      setFilteredItems(dogs);
+      setNoResults(false);
+      return;
+    }
+    const filteredList = dogs.filter((item) =>
+      item.name.toLowerCase().includes(input.toLowerCase())
+    );
+    setFilteredItems(filteredList);
+    setNoResults(filteredList.length === 0);
+  };
+
   const handleFilter = () => {
-    const filteredList = dogs.filter((item) => {
+    let filteredList = dogs.filter((item) => {
       if (
         genderFilter &&
         item.gender.toLowerCase() !== genderFilter.toLowerCase()
@@ -63,6 +82,12 @@ function DogsPage() {
       return true;
     });
 
+    if (searchInput !== "") {
+      filteredList = filteredList.filter((item) =>
+        item.name.toLowerCase().includes(searchInput.toLowerCase())
+      );
+    }
+
     setFilteredItems(filteredList);
     setNoResults(filteredList.length === 0);
   };
@@ -71,6 +96,9 @@ function DogsPage() {
     <StyledMain>
       <Header />
       <h1>🐾 PfotenPortal 🐾</h1>
+
+      <SearchDogs onSearch={handleSearch} />
+
       <div>
         <label htmlFor="ageFilter">Alter:</label>
         <select
@@ -115,7 +143,11 @@ function DogsPage() {
 
       {noResults && <p>Keine Ergebnisse gefunden.</p>}
 
-      <List items={filteredItems} onBookmark={handleBookmark} />
+      <DogList
+        items={filteredItems}
+        onBookmark={handleBookmark}
+        favorites={favorites}
+      />
 
       <Link href="/">Zurück</Link>
       <br />
@@ -123,5 +155,3 @@ function DogsPage() {
     </StyledMain>
   );
 }
-
-export default DogsPage;

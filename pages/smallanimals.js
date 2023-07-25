@@ -1,23 +1,27 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
-import List from "../components/Smallanimallist/index.js";
-import smallanimals from "../lib/smallanimals_data.js";
+import SmallAnimalList from "../components/Smallanimallist/index.js";
+import smallAnimals from "../lib/smallanimals_data.js";
 import Footer from "../components/Footer/index.js";
 import Header from "../components/Header";
 import styled from "styled-components";
+import SearchSmallAnimals from "../components/Searchfunction/SearchSmallAnimals.js";
 
 const StyledMain = styled.main`
   padding-bottom: 60px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 
-function SmallAnimalsPage() {
-  const [filteredItems, setFilteredItems] = useState(smallanimals);
+export default function SmallAnimalsPage() {
+  const [filteredItems, setFilteredItems] = useState(smallAnimals);
   const [ageFilter, setAgeFilter] = useState("");
   const [genderFilter, setGenderFilter] = useState("");
-  const [speciesFilter, setSpeciesFilter] = useState("");
   const [locationFilter, setLocationFilter] = useState("");
   const [noResults, setNoResults] = useState(false);
   const [favorites, setFavorites] = useState([]);
+  const [searchInput, setSearchInput] = useState("");
 
   useEffect(() => {
     const storedFavorites = localStorage.getItem("favorites");
@@ -37,18 +41,25 @@ function SmallAnimalsPage() {
     localStorage.setItem("favorites", JSON.stringify(newFavorites));
   };
 
+  const handleSearch = (input) => {
+    setSearchInput(input);
+    if (input === "") {
+      setFilteredItems(smallAnimals);
+      setNoResults(false);
+      return;
+    }
+    const filteredList = smallAnimals.filter((item) =>
+      item.name.toLowerCase().includes(input.toLowerCase())
+    );
+    setFilteredItems(filteredList);
+    setNoResults(filteredList.length === 0);
+  };
+
   const handleFilter = () => {
-    const filteredList = smallanimals.filter((item) => {
+    let filteredList = smallAnimals.filter((item) => {
       if (
         genderFilter &&
         item.gender.toLowerCase() !== genderFilter.toLowerCase()
-      ) {
-        return false;
-      }
-
-      if (
-        speciesFilter &&
-        item.species.toLowerCase() !== speciesFilter.toLowerCase()
       ) {
         return false;
       }
@@ -70,6 +81,11 @@ function SmallAnimalsPage() {
 
       return true;
     });
+    if (searchInput !== "") {
+      filteredList = filteredList.filter((item) =>
+        item.name.toLowerCase().includes(searchInput.toLowerCase())
+      );
+    }
 
     setFilteredItems(filteredList);
     setNoResults(filteredList.length === 0);
@@ -79,6 +95,8 @@ function SmallAnimalsPage() {
     <StyledMain>
       <Header />
       <h1>🐾 PfotenPortal 🐾</h1>
+
+      <SearchSmallAnimals onSearch={handleSearch} />
 
       <div>
         <label htmlFor="ageFilter">Alter:</label>
@@ -106,21 +124,6 @@ function SmallAnimalsPage() {
           <option value="männlich">Männlich</option>
         </select>
       </div>
-
-      <div>
-        <label htmlFor="speciesFilter">Art:</label>
-        <select
-          id="speciesFilter"
-          value={speciesFilter}
-          onChange={(e) => setSpeciesFilter(e.target.value)}
-        >
-          <option value="">Alle</option>
-          <option value="Kleintier">Kleintier</option>
-          <option value="Reptil">Reptil</option>
-          <option value="Vogel">Vogel</option>
-        </select>
-      </div>
-
       <div>
         <label htmlFor="locationFilter">Standort:</label>
         <select
@@ -139,7 +142,11 @@ function SmallAnimalsPage() {
 
       {noResults && <p>Keine Ergebnisse gefunden.</p>}
 
-      <List items={filteredItems} onBookmark={handleBookmark} />
+      <SmallAnimalList
+        items={filteredItems}
+        onBookmark={handleBookmark}
+        favorites={favorites}
+      />
 
       <Link href="/">Zurück</Link>
       <br />
@@ -147,5 +154,3 @@ function SmallAnimalsPage() {
     </StyledMain>
   );
 }
-
-export default SmallAnimalsPage;

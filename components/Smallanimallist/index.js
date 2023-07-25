@@ -1,25 +1,31 @@
 import Image from "next/image";
 import Link from "next/link";
 import BookmarkButton from "../Bookmarkbutton";
+import styled from "styled-components";
 
-export default function List({ items, onBookmark }) {
+const ListContainer = styled.ul`
+  list-style-type: none;
+  padding: 0;
+`;
+
+export default function SmallAnimalList({ items, onBookmark, favorites }) {
   const handleBookmark = (itemId, isBookmarked) => {
-    let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
-    if (isBookmarked) {
-      favorites.push(itemId);
+    let newFavorites;
+    if (favorites.includes(itemId)) {
+      newFavorites = favorites.filter((favId) => favId !== itemId);
     } else {
-      favorites = favorites.filter((favId) => favId !== itemId);
+      newFavorites = [...favorites, itemId];
     }
-    localStorage.setItem("favorites", JSON.stringify(favorites));
+    localStorage.setItem("favorites", JSON.stringify(newFavorites));
     onBookmark(itemId, isBookmarked);
   };
 
   return (
-    <ul>
+    <ListContainer>
       {items.map((item) => (
         <li key={item.id}>
           <h3>{item.name}</h3>
-          <Image src={item.image} alt={item.name} width={500} height={500} />
+          <Image src={item.image} alt={item.name} width={375} height={375} />
           <p>Alter: {item.age}</p>
           <p>Geschlecht: {item.gender}</p>
           <p>Rasse: {item.breed}</p>
@@ -27,6 +33,7 @@ export default function List({ items, onBookmark }) {
 
           <BookmarkButton
             itemId={item.id}
+            isBookmarked={favorites.includes(item.id)}
             onBookmark={(isBookmarked) => handleBookmark(item.id, isBookmarked)}
           />
 
@@ -35,6 +42,6 @@ export default function List({ items, onBookmark }) {
           </Link>
         </li>
       ))}
-    </ul>
+    </ListContainer>
   );
 }

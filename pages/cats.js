@@ -1,22 +1,27 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import List from "../components/Catlist/index.js";
 import cats from "../lib/cat_data.js";
 import Footer from "../components/Footer/index.js";
 import Header from "../components/Header";
 import styled from "styled-components";
+import SearchCats from "../components/Searchfunction/SearchCats.js";
 
 const StyledMain = styled.main`
   padding-bottom: 60px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 
-function CatsPage() {
+export default function CatsPage() {
   const [filteredItems, setFilteredItems] = useState(cats);
   const [ageFilter, setAgeFilter] = useState("");
   const [genderFilter, setGenderFilter] = useState("");
   const [locationFilter, setLocationFilter] = useState("");
   const [noResults, setNoResults] = useState(false);
   const [favorites, setFavorites] = useState([]);
+  const [searchInput, setSearchInput] = useState("");
 
   useEffect(() => {
     const storedFavorites = localStorage.getItem("favorites");
@@ -36,8 +41,22 @@ function CatsPage() {
     localStorage.setItem("favorites", JSON.stringify(newFavorites));
   };
 
+  const handleSearch = (input) => {
+    setSearchInput(input);
+    if (input === "") {
+      setFilteredItems(cats);
+      setNoResults(false);
+      return;
+    }
+    const filteredList = cats.filter((item) =>
+      item.name.toLowerCase().includes(input.toLowerCase())
+    );
+    setFilteredItems(filteredList);
+    setNoResults(filteredList.length === 0);
+  };
+
   const handleFilter = () => {
-    const filteredList = cats.filter((item) => {
+    let filteredList = cats.filter((item) => {
       if (
         genderFilter &&
         item.gender.toLowerCase() !== genderFilter.toLowerCase()
@@ -63,6 +82,12 @@ function CatsPage() {
       return true;
     });
 
+    if (searchInput !== "") {
+      filteredList = filteredList.filter((item) =>
+        item.name.toLowerCase().includes(searchInput.toLowerCase())
+      );
+    }
+
     setFilteredItems(filteredList);
     setNoResults(filteredList.length === 0);
   };
@@ -71,6 +96,9 @@ function CatsPage() {
     <StyledMain>
       <Header />
       <h1>🐾 PfotenPortal 🐾</h1>
+
+      <SearchCats onSearch={handleSearch} />
+
       <div>
         <label htmlFor="ageFilter">Alter:</label>
         <select
@@ -123,5 +151,3 @@ function CatsPage() {
     </StyledMain>
   );
 }
-
-export default CatsPage;

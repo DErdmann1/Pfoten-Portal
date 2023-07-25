@@ -15,7 +15,7 @@ const StyledH1 = styled.h1`
 `;
 
 const Container = styled.div`
-  padding-bottom: 60px; /* Hier den gewünschten Abstand einstellen */
+  padding-bottom: 60px;
 `;
 
 export default function MoreDetailsPage() {
@@ -76,9 +76,14 @@ export default function MoreDetailsPage() {
 
   return (
     <Container>
-      <Header />
+      <Header showSearch={false} />
       <StyledH1>{animal.name}</StyledH1>
-      <Image src={animal.image} alt={animal.name} width={500} height={500} />
+      <Image
+        src={animal.image}
+        alt={animal.name}
+        width={animal.imageWidth}
+        height={animal.imageHeight}
+      />
       <p>Alter: {animal.age}</p>
       <p>Geschlecht: {animal.gender}</p>
       <p>Rasse: {animal.breed}</p>

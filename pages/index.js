@@ -1,4 +1,3 @@
-import React from "react";
 import Footer from "../components/Footer/index.js";
 import styled from "styled-components";
 
@@ -7,6 +6,7 @@ const StyledHeader = styled.header`
   width: 100%;
   padding: 20px;
   text-align: center;
+  border-bottom: 2px solid black;
 `;
 
 const Logo = styled.p`
