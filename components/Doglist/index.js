@@ -10,9 +10,6 @@ const ListContainer = styled.ul`
 
 export default function DogList({ items, onBookmark, isBookmarked }) {
   const handleBookmark = (itemId, isBookmarked) => {
-    console.log(
-      `handleBookmark called with itemId: ${itemId}, isBookmarked: ${isBookmarked}`
-    );
     let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
     if (isBookmarked) {
       favorites.push(itemId);
