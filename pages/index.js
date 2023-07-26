@@ -4,7 +4,7 @@ import styled from "styled-components";
 const StyledHeader = styled.header`
   background-color: #987554;
   width: 100%;
-  padding: 20px;
+  padding: 1px;
   text-align: center;
   border-bottom: 2px solid black;
 `;
@@ -33,7 +33,7 @@ const Button = styled.a`
   padding: 20px;
   text-decoration: none;
   font-weight: bold;
-  font-size: 16px;
+  font-size: 18px;
   cursor: pointer;
   margin-top: 20px;
 `;
@@ -42,10 +42,9 @@ export default function HomePage() {
   return (
     <>
       <StyledHeader>
-        <Logo>🐾 PfotenPortal 🐾</Logo>
+        <h1>🐾 PfotenPortal 🐾</h1>
       </StyledHeader>
       <StyledHomePage>
-        <h1>🐾 PfotenPortal 🐾</h1>
         <Button href="/dogs">Zu unseren Hunden</Button>
         <Button href="/cats">Zu unseren Katzen</Button>
         <Button href="/smallanimals">Zu unseren Kleintieren</Button>
