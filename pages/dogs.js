@@ -146,7 +146,7 @@ export default function DogsPage() {
       <DogList
         items={filteredItems}
         onBookmark={handleBookmark}
-        favorites={favorites}
+        isBookmarked={(itemId) => favorites.includes(itemId)}
       />
 
       <Link href="/">Zurück</Link>

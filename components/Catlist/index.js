@@ -8,11 +8,8 @@ const ListContainer = styled.ul`
   padding: 0;
 `;
 
-export default function Catlist({ items, onBookmark }) {
+export default function Catlist({ items, onBookmark, isBookmarked }) {
   const handleBookmark = (itemId, isBookmarked) => {
-    console.log(
-      `handleBookmark called with itemId: ${itemId}, isBookmarked: ${isBookmarked}`
-    );
     let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
     if (isBookmarked) {
       favorites.push(itemId);
@@ -37,6 +34,7 @@ export default function Catlist({ items, onBookmark }) {
           <BookmarkButton
             itemId={item.id}
             onBookmark={(isBookmarked) => handleBookmark(item.id, isBookmarked)}
+            isBookmarked={isBookmarked(item.id)}
           />
 
           <Link href={`/moredetails/${item.id}`}>

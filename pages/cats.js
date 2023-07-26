@@ -143,7 +143,11 @@ export default function CatsPage() {
 
       {noResults && <p>Keine Ergebnisse gefunden.</p>}
 
-      <List items={filteredItems} onBookmark={handleBookmark} />
+      <List
+        items={filteredItems}
+        onBookmark={handleBookmark}
+        isBookmarked={(itemId) => favorites.includes(itemId)}
+      />
 
       <Link href="/">Zurück</Link>
       <br />
