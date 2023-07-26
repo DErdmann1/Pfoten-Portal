@@ -1,5 +1,8 @@
 import Footer from "../components/Footer/index.js";
 import styled from "styled-components";
+import DogIcon from "../components/Icons/DogIcon.js";
+import CatIcon from "../components/Icons/CatIcon.js";
+import SmallanimalIcon from "../components/Icons/SmallanimalIcon.js";
 
 const StyledHeader = styled.header`
   background-color: #987554;
@@ -45,9 +48,18 @@ export default function HomePage() {
         <h1>🐾 PfotenPortal 🐾</h1>
       </StyledHeader>
       <StyledHomePage>
-        <Button href="/dogs">Zu unseren Hunden</Button>
-        <Button href="/cats">Zu unseren Katzen</Button>
-        <Button href="/smallanimals">Zu unseren Kleintieren</Button>
+        <Button href="/dogs">
+          <DogIcon />
+          Zu unseren Hunden
+        </Button>
+        <Button href="/cats">
+          <CatIcon />
+          Zu unseren Katzen
+        </Button>
+        <Button href="/smallanimals">
+          <SmallanimalIcon />
+          Zu unseren Kleintieren
+        </Button>
         <Footer />
       </StyledHomePage>
     </>
