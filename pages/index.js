@@ -41,6 +41,12 @@ const Button = styled.a`
   margin-top: 20px;
 `;
 
+const IconContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
 export default function HomePage() {
   return (
     <>
@@ -49,16 +55,22 @@ export default function HomePage() {
       </StyledHeader>
       <StyledHomePage>
         <Button href="/dogs">
-          <DogIcon />
-          Zu unseren Hunden
+          <IconContainer>
+            <DogIcon />
+            Zu unseren Hunden
+          </IconContainer>
         </Button>
         <Button href="/cats">
-          <CatIcon />
-          Zu unseren Katzen
+          <IconContainer>
+            <CatIcon />
+            Zu unseren Katzen
+          </IconContainer>
         </Button>
         <Button href="/smallanimals">
-          <SmallanimalIcon />
-          Zu unseren Kleintieren
+          <IconContainer>
+            <SmallanimalIcon />
+            Zu unseren Kleintieren
+          </IconContainer>
         </Button>
         <Footer />
       </StyledHomePage>
