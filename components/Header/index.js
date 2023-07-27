@@ -7,7 +7,7 @@ const StyledHeader = styled.header`
   width: 100%;
   border-bottom: 3px solid black;
   height: 100px;
-  margin-bottom: 30px;
+  margin-bottom: 15px;
 `;
 
 const Logo = styled.h1`

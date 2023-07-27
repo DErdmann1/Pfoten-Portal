@@ -11,7 +11,7 @@ const ListContainer = styled.ul`
 const DogImage = styled(Image)`
   display: block;
   margin: 25px auto;
-  border: 1px solid #ccc;
+  border: 2px solid #ccc;
   border-radius: 4px;
   max-width: 300px;
   max-height: 300px;
