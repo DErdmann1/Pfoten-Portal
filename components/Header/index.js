@@ -1,4 +1,3 @@
-import Link from "next/link";
 import styled from "styled-components";
 
 const StyledHeader = styled.header`
@@ -6,21 +5,29 @@ const StyledHeader = styled.header`
   padding: 20px;
   text-align: center;
   width: 100%;
-  border-bottom: 2px solid black;
+  border-bottom: 3px solid black;
+  height: 100px;
 `;
 
-const Logo = styled.p`
-  font-size: 24px;
-  color: black;
-  width: 100%;
+const Logo = styled.h1`
+  font-size: 32px;
+  color: #black;
+  font-family: "Arial", sans-serif;
+  margin: 0;
+`;
+
+const Subtitle = styled.p`
+  font-size: 16px;
+  color: #ffffff;
+  font-family: "Arial", sans-serif;
+  margin: 5px 0;
 `;
 
 export default function Header() {
   return (
     <StyledHeader>
-      <Link href="/">
-        <Logo>🐾 PfotenPortal 🐾</Logo>
-      </Link>
+      <Logo>🐾 PfotenPortal 🐾</Logo>
+      <Subtitle>Finde dein perfektes Haustier</Subtitle>
     </StyledHeader>
   );
 }

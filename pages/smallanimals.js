@@ -3,7 +3,7 @@ import Link from "next/link";
 import SmallAnimalList from "../components/Smallanimallist/index.js";
 import smallAnimals from "../lib/smallanimals_data.js";
 import Footer from "../components/Footer/index.js";
-import Header from "../components/Header";
+import StyledHeader from "../components/Header";
 import styled from "styled-components";
 import SearchSmallAnimals from "../components/Searchfunction/SearchSmallAnimals.js";
 
@@ -93,8 +93,7 @@ export default function SmallAnimalsPage() {
 
   return (
     <StyledMain>
-      <Header />
-      <h1>🐾 PfotenPortal 🐾</h1>
+      <StyledHeader />
 
       <SearchSmallAnimals onSearch={handleSearch} />
 

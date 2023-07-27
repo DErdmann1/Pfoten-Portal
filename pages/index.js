@@ -1,17 +1,14 @@
 import Footer from "../components/Footer/index.js";
+import Header from "../components/Header/index.js";
 import styled from "styled-components";
+import SvgIcon from "../components/Icons/index.js";
 
 const StyledHeader = styled.header`
   background-color: #987554;
   width: 100%;
   padding: 1px;
   text-align: center;
-  border-bottom: 2px solid black;
-`;
-
-const Logo = styled.p`
-  font-size: 24px;
-  color: black;
+  border-bottom: 1px solid black;
 `;
 
 const StyledHomePage = styled.main`
@@ -28,26 +25,50 @@ const Button = styled.a`
   align-items: center;
   background-color: #987554;
   color: white;
-  border: none;
-  border-radius: 8px;
-  padding: 20px;
+  border: 3px solid black;
+  border-radius: 30px;
+  padding: 10px;
   text-decoration: none;
   font-weight: bold;
-  font-size: 18px;
+  font-size: 12px;
   cursor: pointer;
-  margin-top: 20px;
+  margin-top: 30px;
+  width: 160px;
+  height: 140px;
+  text-align: center;
+`;
+
+const IconContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0px;
+  margin-top: -10px;
 `;
 
 export default function HomePage() {
   return (
     <>
-      <StyledHeader>
-        <h1>🐾 PfotenPortal 🐾</h1>
-      </StyledHeader>
+      <Header />
       <StyledHomePage>
-        <Button href="/dogs">Zu unseren Hunden</Button>
-        <Button href="/cats">Zu unseren Katzen</Button>
-        <Button href="/smallanimals">Zu unseren Kleintieren</Button>
+        <Button href="/dogs">
+          <IconContainer>
+            <SvgIcon variant="dog" size={100} />
+            Zu unseren Hunden
+          </IconContainer>
+        </Button>
+        <Button href="/cats">
+          <IconContainer>
+            <SvgIcon variant="cat" size={100} />
+            Zu unseren Katzen
+          </IconContainer>
+        </Button>
+        <Button href="/smallanimals">
+          <IconContainer>
+            <SvgIcon variant="smallanimal" size={100} />
+            Zu unseren Kleintieren
+          </IconContainer>
+        </Button>
         <Footer />
       </StyledHomePage>
     </>
