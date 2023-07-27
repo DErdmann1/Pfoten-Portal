@@ -1,20 +1,14 @@
 import Footer from "../components/Footer/index.js";
+import Header from "../components/Header/index.js";
 import styled from "styled-components";
-import DogIcon from "../components/Icons/DogIcon.js";
-import CatIcon from "../components/Icons/CatIcon.js";
-import SmallanimalIcon from "../components/Icons/SmallanimalIcon.js";
+import SvgIcon from "../components/Icons/index.js";
 
 const StyledHeader = styled.header`
   background-color: #987554;
   width: 100%;
   padding: 1px;
   text-align: center;
-  border-bottom: 2px solid black;
-`;
-
-const Logo = styled.p`
-  font-size: 24px;
-  color: black;
+  border-bottom: 1px solid black;
 `;
 
 const StyledHomePage = styled.main`
@@ -33,42 +27,42 @@ const Button = styled.a`
   color: white;
   border: none;
   border-radius: 8px;
-  padding: 20px;
+  padding: 10px;
   text-decoration: none;
   font-weight: bold;
-  font-size: 18px;
+  font-size: 12px;
   cursor: pointer;
-  margin-top: 20px;
+  margin-top: 30px;
 `;
 
 const IconContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: 0px;
+  margin-top: -10px;
 `;
 
 export default function HomePage() {
   return (
     <>
-      <StyledHeader>
-        <h1>🐾 PfotenPortal 🐾</h1>
-      </StyledHeader>
+      <Header />
       <StyledHomePage>
         <Button href="/dogs">
           <IconContainer>
-            <DogIcon />
+            <SvgIcon variant="dog" />
             Zu unseren Hunden
           </IconContainer>
         </Button>
         <Button href="/cats">
           <IconContainer>
-            <CatIcon />
+            <SvgIcon variant="cat" />
             Zu unseren Katzen
           </IconContainer>
         </Button>
         <Button href="/smallanimals">
           <IconContainer>
-            <SmallanimalIcon />
+            <SvgIcon variant="smallanimal" />
             Zu unseren Kleintieren
           </IconContainer>
         </Button>

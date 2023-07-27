@@ -3,7 +3,7 @@ import Link from "next/link";
 import List from "../components/Catlist/index.js";
 import cats from "../lib/cat_data.js";
 import Footer from "../components/Footer/index.js";
-import Header from "../components/Header";
+import StyledHeader from "../components/Header";
 import styled from "styled-components";
 import SearchCats from "../components/Searchfunction/SearchCats.js";
 
@@ -94,8 +94,7 @@ export default function CatsPage() {
 
   return (
     <StyledMain>
-      <Header />
-      <h1>🐾 PfotenPortal 🐾</h1>
+      <StyledHeader />
 
       <SearchCats onSearch={handleSearch} />
 

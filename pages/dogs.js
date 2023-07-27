@@ -3,7 +3,7 @@ import Link from "next/link";
 import DogList from "../components/Doglist/index.js";
 import dogs from "../lib/dog_data.js";
 import Footer from "../components/Footer/index.js";
-import Header from "../components/Header";
+import StyledHeader from "../components/Header";
 import styled from "styled-components";
 import SearchDogs from "../components/Searchfunction/SearchDogs.js";
 
@@ -94,11 +94,8 @@ export default function DogsPage() {
 
   return (
     <StyledMain>
-      <Header />
-      <h1>🐾 PfotenPortal 🐾</h1>
-
+      <StyledHeader />
       <SearchDogs onSearch={handleSearch} />
-
       <div>
         <label htmlFor="ageFilter">Alter:</label>
         <select
@@ -112,7 +109,6 @@ export default function DogsPage() {
           <option value="10+">Älter als 10 Jahre</option>
         </select>
       </div>
-
       <div>
         <label htmlFor="genderFilter">Geschlecht:</label>
         <select
@@ -138,17 +134,13 @@ export default function DogsPage() {
           <option value="Tierheim 3">Tierheim 3</option>
         </select>
       </div>
-
       <button onClick={handleFilter}>Filter anwenden</button>
-
       {noResults && <p>Keine Ergebnisse gefunden.</p>}
-
       <DogList
         items={filteredItems}
         onBookmark={handleBookmark}
         isBookmarked={(itemId) => favorites.includes(itemId)}
       />
-
       <Link href="/">Zurück</Link>
       <br />
       <Footer />
