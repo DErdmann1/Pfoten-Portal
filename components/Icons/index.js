@@ -15,7 +15,7 @@ const paths = {
 
 export default function SvgIcon({
   variant = "dog",
-  size = 50,
+  size = 80,
   color = "currentColor",
 }) {
   return (

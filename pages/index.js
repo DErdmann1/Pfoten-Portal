@@ -25,14 +25,17 @@ const Button = styled.a`
   align-items: center;
   background-color: #987554;
   color: white;
-  border: none;
-  border-radius: 8px;
+  border: 3px solid black;
+  border-radius: 30px;
   padding: 10px;
   text-decoration: none;
   font-weight: bold;
   font-size: 12px;
   cursor: pointer;
   margin-top: 30px;
+  width: 160px;
+  height: 140px;
+  text-align: center;
 `;
 
 const IconContainer = styled.div`
@@ -50,19 +53,19 @@ export default function HomePage() {
       <StyledHomePage>
         <Button href="/dogs">
           <IconContainer>
-            <SvgIcon variant="dog" />
+            <SvgIcon variant="dog" size={100} />
             Zu unseren Hunden
           </IconContainer>
         </Button>
         <Button href="/cats">
           <IconContainer>
-            <SvgIcon variant="cat" />
+            <SvgIcon variant="cat" size={100} />
             Zu unseren Katzen
           </IconContainer>
         </Button>
         <Button href="/smallanimals">
           <IconContainer>
-            <SvgIcon variant="smallanimal" />
+            <SvgIcon variant="smallanimal" size={100} />
             Zu unseren Kleintieren
           </IconContainer>
         </Button>
