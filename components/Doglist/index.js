@@ -8,6 +8,15 @@ const ListContainer = styled.ul`
   padding: 0;
 `;
 
+const DogImage = styled(Image)`
+  display: block;
+  margin: 25px auto;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  max-width: 300px;
+  max-height: 300px;
+`;
+
 export default function DogList({ items, onBookmark, isBookmarked }) {
   const handleBookmark = (itemId, isBookmarked) => {
     let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
@@ -25,7 +34,7 @@ export default function DogList({ items, onBookmark, isBookmarked }) {
       {items.map((item) => (
         <li key={item.id}>
           <h3>{item.name}</h3>
-          <Image src={item.image} alt={item.name} width={375} height={375} />
+          <DogImage src={item.image} alt={item.name} width={375} height={375} />
           <p>Alter: {item.age}</p>
           <p>Geschlecht: {item.gender}</p>
           <p>Rasse: {item.breed}</p>
