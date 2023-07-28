@@ -22,8 +22,10 @@ const ListItem = styled.li`
   flex-direction: column;
   border: 1px solid #ddd;
   border-radius: 8px;
-  padding: 10px;
-  margin: 10px;
+  padding-left: 25px;
+  padding-right: 25px;
+  margin-top: 30px;
+  margin-bottom: 60px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 `;
 
@@ -32,6 +34,21 @@ const ButtonContainer = styled.div`
   gap: 10px;
   margin-top: 10px;
   margin-bottom: 35px;
+`;
+
+const BookmarkBtn = styled.button`
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+`;
+
+const MoreDetailsBtn = styled.button`
+  background-color: #f0f0f0;
+  color: #333;
+  border: none;
+  border-radius: 4px;
+  padding: 8px 16px;
+  cursor: pointer;
 `;
 
 export default function SmallAnimalList({ items, onBookmark, isBookmarked }) {
@@ -63,16 +80,18 @@ export default function SmallAnimalList({ items, onBookmark, isBookmarked }) {
           <p>Standort: {item.location}</p>
 
           <ButtonContainer>
-            <BookmarkButton
-              itemId={item.id}
-              onBookmark={(isBookmarked) =>
-                handleBookmark(item.id, isBookmarked)
-              }
-              isBookmarked={isBookmarked(item.id)}
-            />
+            <BookmarkBtn
+              onClick={() => handleBookmark(item.id, !isBookmarked(item.id))}
+            >
+              <BookmarkButton
+                itemId={item.id}
+                isBookmarked={isBookmarked(item.id)}
+                onBookmark={handleBookmark}
+              />
+            </BookmarkBtn>
 
             <Link href={`/moredetails/${item.id}`}>
-              <button>Mehr Details..</button>
+              <MoreDetailsBtn>Mehr Details..</MoreDetailsBtn>
             </Link>
           </ButtonContainer>
         </ListItem>

@@ -36,6 +36,21 @@ const ButtonContainer = styled.div`
   margin-bottom: 35px;
 `;
 
+const BookmarkBtn = styled.button`
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+`;
+
+const MoreDetailsBtn = styled.button`
+  background-color: #f0f0f0;
+  color: #333;
+  border: none;
+  border-radius: 4px;
+  padding: 8px 16px;
+  cursor: pointer;
+`;
+
 export default function DogList({ items, onBookmark, isBookmarked }) {
   const handleBookmark = (itemId, isBookmarked) => {
     let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
@@ -60,16 +75,18 @@ export default function DogList({ items, onBookmark, isBookmarked }) {
           <p>Standort: {item.location}</p>
 
           <ButtonContainer>
-            <BookmarkButton
-              itemId={item.id}
-              onBookmark={(isBookmarked) =>
-                handleBookmark(item.id, isBookmarked)
-              }
-              isBookmarked={isBookmarked(item.id)}
-            />
+            <BookmarkBtn
+              onClick={() => handleBookmark(item.id, !isBookmarked(item.id))}
+            >
+              <BookmarkButton
+                itemId={item.id}
+                isBookmarked={isBookmarked(item.id)}
+                onBookmark={handleBookmark}
+              />
+            </BookmarkBtn>
 
             <Link href={`/moredetails/${item.id}`}>
-              <button>Mehr Details..</button>
+              <MoreDetailsBtn>Mehr Details..</MoreDetailsBtn>
             </Link>
           </ButtonContainer>
         </ListItem>
