@@ -8,15 +8,24 @@ const ListContainer = styled.ul`
   padding: 0;
 `;
 
-export default function SmallAnimalList({ items, onBookmark, favorites }) {
+const SmallanimalImage = styled(Image)`
+  display: block;
+  margin: 25px auto;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  max-width: 300px;
+  max-height: 300px;
+`;
+
+export default function SmallAnimalList({ items, onBookmark, isBookmarked }) {
   const handleBookmark = (itemId, isBookmarked) => {
-    let newFavorites;
-    if (favorites.includes(itemId)) {
-      newFavorites = favorites.filter((favId) => favId !== itemId);
+    let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+    if (isBookmarked) {
+      favorites.push(itemId);
     } else {
-      newFavorites = [...favorites, itemId];
+      favorites = favorites.filter((favId) => favId !== itemId);
     }
-    localStorage.setItem("favorites", JSON.stringify(newFavorites));
+    localStorage.setItem("favorites", JSON.stringify(favorites));
     onBookmark(itemId, isBookmarked);
   };
 
@@ -25,7 +34,12 @@ export default function SmallAnimalList({ items, onBookmark, favorites }) {
       {items.map((item) => (
         <li key={item.id}>
           <h3>{item.name}</h3>
-          <Image src={item.image} alt={item.name} width={375} height={375} />
+          <SmallanimalImage
+            src={item.image}
+            alt={item.name}
+            width={375}
+            height={375}
+          />
           <p>Alter: {item.age}</p>
           <p>Geschlecht: {item.gender}</p>
           <p>Rasse: {item.breed}</p>
@@ -33,8 +47,8 @@ export default function SmallAnimalList({ items, onBookmark, favorites }) {
 
           <BookmarkButton
             itemId={item.id}
-            isBookmarked={favorites.includes(item.id)}
             onBookmark={(isBookmarked) => handleBookmark(item.id, isBookmarked)}
+            isBookmarked={isBookmarked(item.id)}
           />
 
           <Link href={`/moredetails/${item.id}`}>
