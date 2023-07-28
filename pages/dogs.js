@@ -14,6 +14,39 @@ const StyledMain = styled.main`
   align-items: center;
 `;
 
+const FilterContainer = styled.div`
+  margin: 20px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+`;
+
+const FilterLabel = styled.label`
+  margin-right: 10px;
+`;
+
+const FilterOption = styled.select`
+  padding: 8px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  outline: none;
+  cursor: pointer;
+  width: 100px;
+  margin: 5px;
+`;
+
+const ToggleButton = styled.button`
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 20px;
+  cursor: pointer;
+  margin-top: 10px;
+  margin-bottom: 5px;
+`;
+
 export default function DogsPage() {
   const [filteredItems, setFilteredItems] = useState(dogs);
   const [ageFilter, setAgeFilter] = useState("");
@@ -22,6 +55,7 @@ export default function DogsPage() {
   const [noResults, setNoResults] = useState(false);
   const [favorites, setFavorites] = useState([]);
   const [searchInput, setSearchInput] = useState("");
+  const [filterExpanded, setFilterExpanded] = useState(false);
 
   useEffect(() => {
     const storedFavorites = localStorage.getItem("favorites");
@@ -92,49 +126,54 @@ export default function DogsPage() {
     setNoResults(filteredList.length === 0);
   };
 
+  const handleToggleFilter = () => {
+    setFilterExpanded(!filterExpanded);
+  };
+
   return (
     <StyledMain>
       <StyledHeader />
       <SearchDogs onSearch={handleSearch} />
-      <div>
-        <label htmlFor="ageFilter">Alter:</label>
-        <select
-          id="ageFilter"
-          value={ageFilter}
-          onChange={(e) => setAgeFilter(e.target.value)}
-        >
-          <option value="">Alle</option>
-          <option value="0-5">0-5 Jahre</option>
-          <option value="6-10">6-10 Jahre</option>
-          <option value="10+">Älter als 10 Jahre</option>
-        </select>
-      </div>
-      <div>
-        <label htmlFor="genderFilter">Geschlecht:</label>
-        <select
-          id="genderFilter"
-          value={genderFilter}
-          onChange={(e) => setGenderFilter(e.target.value)}
-        >
-          <option value="">Alle</option>
-          <option value="weiblich">Weiblich</option>
-          <option value="männlich">Männlich</option>
-        </select>
-      </div>
-      <div>
-        <label htmlFor="locationFilter">Standort:</label>
-        <select
-          id="locationFilter"
-          value={locationFilter}
-          onChange={(e) => setLocationFilter(e.target.value)}
-        >
-          <option value="">Alle</option>
-          <option value="Tierheim 1">Tierheim 1</option>
-          <option value="Tierheim 2">Tierheim 2</option>
-          <option value="Tierheim 3">Tierheim 3</option>
-        </select>
-      </div>
-      <button onClick={handleFilter}>Filter anwenden</button>
+      <ToggleButton onClick={handleToggleFilter}>
+        {filterExpanded ? "Filter ausblenden" : "Filter anzeigen"}
+      </ToggleButton>
+      {filterExpanded && (
+        <FilterContainer>
+          <FilterLabel htmlFor="ageFilter">Alter:</FilterLabel>
+          <FilterOption
+            id="ageFilter"
+            value={ageFilter}
+            onChange={(e) => setAgeFilter(e.target.value)}
+          >
+            <option value="">Alle</option>
+            <option value="0-5">0-5 Jahre</option>
+            <option value="6-10">6-10 Jahre</option>
+            <option value="10+">Älter als 10 Jahre</option>
+          </FilterOption>
+          <FilterLabel htmlFor="genderFilter">Geschlecht:</FilterLabel>
+          <FilterOption
+            id="genderFilter"
+            value={genderFilter}
+            onChange={(e) => setGenderFilter(e.target.value)}
+          >
+            <option value="">Alle</option>
+            <option value="weiblich">Weiblich</option>
+            <option value="männlich">Männlich</option>
+          </FilterOption>
+          <FilterLabel htmlFor="locationFilter">Standort:</FilterLabel>
+          <FilterOption
+            id="locationFilter"
+            value={locationFilter}
+            onChange={(e) => setLocationFilter(e.target.value)}
+          >
+            <option value="">Alle</option>
+            <option value="Tierheim 1">Tierheim 1</option>
+            <option value="Tierheim 2">Tierheim 2</option>
+            <option value="Tierheim 3">Tierheim 3</option>
+          </FilterOption>
+          <button onClick={handleFilter}>Filter anwenden</button>
+        </FilterContainer>
+      )}
       {noResults && <p>Keine Ergebnisse gefunden.</p>}
       <DogList
         items={filteredItems}
