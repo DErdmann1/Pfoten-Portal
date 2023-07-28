@@ -2,6 +2,7 @@ import Link from "next/link";
 import BookmarkButton from "../Bookmarkbutton";
 import Image from "next/image";
 import styled from "styled-components";
+
 const ListContainer = styled.ul`
   list-style-type: none;
   padding: 0;
