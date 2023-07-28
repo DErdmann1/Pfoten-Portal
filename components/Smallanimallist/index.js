@@ -10,11 +10,23 @@ const ListContainer = styled.ul`
 
 const SmallanimalImage = styled(Image)`
   display: block;
-  margin: 25px auto;
+  margin: 5px auto;
   border: 2px solid #ccc;
-  border-radius: 4px;
+  border-radius: 10px;
   max-width: 300px;
   max-height: 300px;
+`;
+
+const ListItem = styled.li`
+  display: flex;
+  flex-direction: column;
+`;
+
+const ButtonContainer = styled.div`
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+  margin-bottom: 35px;
 `;
 
 export default function SmallAnimalList({ items, onBookmark, isBookmarked }) {
@@ -32,7 +44,7 @@ export default function SmallAnimalList({ items, onBookmark, isBookmarked }) {
   return (
     <ListContainer>
       {items.map((item) => (
-        <li key={item.id}>
+        <ListItem key={item.id}>
           <h3>{item.name}</h3>
           <SmallanimalImage
             src={item.image}
@@ -45,16 +57,20 @@ export default function SmallAnimalList({ items, onBookmark, isBookmarked }) {
           <p>Rasse: {item.breed}</p>
           <p>Standort: {item.location}</p>
 
-          <BookmarkButton
-            itemId={item.id}
-            onBookmark={(isBookmarked) => handleBookmark(item.id, isBookmarked)}
-            isBookmarked={isBookmarked(item.id)}
-          />
+          <ButtonContainer>
+            <BookmarkButton
+              itemId={item.id}
+              onBookmark={(isBookmarked) =>
+                handleBookmark(item.id, isBookmarked)
+              }
+              isBookmarked={isBookmarked(item.id)}
+            />
 
-          <Link href={`/moredetails/${item.id}`}>
-            <button>Mehr Details..</button>
-          </Link>
-        </li>
+            <Link href={`/moredetails/${item.id}`}>
+              <button>Mehr Details..</button>
+            </Link>
+          </ButtonContainer>
+        </ListItem>
       ))}
     </ListContainer>
   );

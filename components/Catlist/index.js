@@ -8,6 +8,27 @@ const ListContainer = styled.ul`
   padding: 0;
 `;
 
+const CatImage = styled(Image)`
+  display: block;
+  margin: 5px auto;
+  border: 2px solid #ccc;
+  border-radius: 10px;
+  max-width: 300px;
+  max-height: 300px;
+`;
+
+const ListItem = styled.li`
+  display: flex;
+  flex-direction: column;
+`;
+
+const ButtonContainer = styled.div`
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+  margin-bottom: 35px;
+`;
+
 export default function Catlist({ items, onBookmark, isBookmarked }) {
   const handleBookmark = (itemId, isBookmarked) => {
     let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
@@ -23,24 +44,28 @@ export default function Catlist({ items, onBookmark, isBookmarked }) {
   return (
     <ListContainer>
       {items.map((item) => (
-        <li key={item.id}>
+        <ListItem key={item.id}>
           <h3>{item.name}</h3>
-          <Image src={item.image} alt={item.name} width={375} height={375} />
+          <CatImage src={item.image} alt={item.name} width={375} height={375} />
           <p>Alter: {item.age}</p>
           <p>Geschlecht: {item.gender}</p>
           <p>Rasse: {item.breed}</p>
           <p>Standort: {item.location}</p>
 
-          <BookmarkButton
-            itemId={item.id}
-            onBookmark={(isBookmarked) => handleBookmark(item.id, isBookmarked)}
-            isBookmarked={isBookmarked(item.id)}
-          />
+          <ButtonContainer>
+            <BookmarkButton
+              itemId={item.id}
+              onBookmark={(isBookmarked) =>
+                handleBookmark(item.id, isBookmarked)
+              }
+              isBookmarked={isBookmarked(item.id)}
+            />
 
-          <Link href={`/moredetails/${item.id}`}>
-            <button>Mehr Details..</button>
-          </Link>
-        </li>
+            <Link href={`/moredetails/${item.id}`}>
+              <button>Mehr Details..</button>
+            </Link>
+          </ButtonContainer>
+        </ListItem>
       ))}
     </ListContainer>
   );
