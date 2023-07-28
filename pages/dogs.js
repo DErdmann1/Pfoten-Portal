@@ -44,6 +44,7 @@ const ToggleButton = styled.button`
   padding: 10px 20px;
   cursor: pointer;
   margin-top: 10px;
+  margin-bottom: 5px;
 `;
 
 export default function DogsPage() {
@@ -54,7 +55,7 @@ export default function DogsPage() {
   const [noResults, setNoResults] = useState(false);
   const [favorites, setFavorites] = useState([]);
   const [searchInput, setSearchInput] = useState("");
-  const [filterExpanded, setFilterExpanded] = useState(true);
+  const [filterExpanded, setFilterExpanded] = useState(false);
 
   useEffect(() => {
     const storedFavorites = localStorage.getItem("favorites");
