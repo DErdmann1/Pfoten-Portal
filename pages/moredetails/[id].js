@@ -48,7 +48,6 @@ const StyledInput = styled.input`
   padding: 8px;
   border-radius: 4px;
   border: 1px solid #ccc;
-  height: 40px;
 `;
 
 const StyledTextarea = styled.textarea`
@@ -65,6 +64,17 @@ const SubmitButton = styled.button`
   border: none;
   background-color: #f0f0f0;
   cursor: pointer;
+`;
+
+const StyledLink = styled(Link)`
+  display: block;
+  text-align: center;
+  margin-top: 20px;
+  font-size: 18px;
+  color: #333;
+  text-decoration: none;
+  border: 1px solid grey;
+  width: 100px;
 `;
 
 export default function MoreDetailsPage() {
@@ -144,7 +154,9 @@ export default function MoreDetailsPage() {
           itemId={animal.id}
           isBookmarked={isBookmarked}
           onBookmark={handleBookmark}
-        />
+        >
+          Zu Favoriten
+        </BookmarkButton>
 
         {isSubmitted ? (
           <p>
@@ -196,7 +208,7 @@ export default function MoreDetailsPage() {
           </StyledForm>
         )}
         <br />
-        <Link href="/">Zurück</Link>
+        <StyledLink href="/">Zurück</StyledLink>
         <br />
       </Container>
       <Footer />
