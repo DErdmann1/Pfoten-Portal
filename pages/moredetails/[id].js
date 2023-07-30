@@ -144,10 +144,10 @@ export default function MoreDetailsPage() {
           width={animal.imageWidth}
           height={animal.imageHeight}
         />
-        <p>Alter:{animal.age}</p>
-        <p>Geschlecht:{animal.gender}</p>
-        <p>Rasse:{animal.breed}</p>
-        <p>Ort:{animal.location}</p>
+        <p>Alter: {animal.age}</p>
+        <p>Geschlecht: {animal.gender}</p>
+        <p>Rasse: {animal.breed}</p>
+        <p>Ort: {animal.location}</p>
         <p>{animal.infoText}</p>
 
         <BookmarkButton
