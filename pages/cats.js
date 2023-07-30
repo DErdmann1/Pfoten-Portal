@@ -167,9 +167,9 @@ export default function CatsPage() {
             onChange={(e) => setLocationFilter(e.target.value)}
           >
             <option value="">Alle</option>
-            <option value="Tierheim 1">Tierheim 1</option>
-            <option value="Tierheim 2">Tierheim 2</option>
-            <option value="Tierheim 3">Tierheim 3</option>
+            <option value="Tierheim 1">Tierheim Saarbrücken</option>
+            <option value="Tierheim 2">Tierheim Hamburg</option>
+            <option value="Tierheim 3">Tierheim Berlin</option>
           </FilterOption>
           <button onClick={handleFilter}>Filter anwenden</button>
         </FilterContainer>

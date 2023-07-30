@@ -3,14 +3,6 @@ import Header from "../components/Header/index.js";
 import styled from "styled-components";
 import SvgIcon from "../components/Icons/index.js";
 
-const StyledHeader = styled.header`
-  background-color: #987554;
-  width: 100%;
-  padding: 1px;
-  text-align: center;
-  border-bottom: 1px solid black;
-`;
-
 const StyledHomePage = styled.main`
   padding-bottom: 60px;
   background-color: #e5d3b3;

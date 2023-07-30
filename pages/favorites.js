@@ -3,21 +3,18 @@ import Link from "next/link";
 import cats from "../lib/cat_data.js";
 import dogs from "../lib/dog_data.js";
 import smallanimals from "../lib/smallanimals_data.js";
-import StyledHeader from "../components/Header";
-import styled from "styled-components";
 import Footer from "../components/Footer/index.js";
 import Image from "next/image";
-import BookmarkButton from "../components/Bookmarkbutton";
 
-const StyledFavoritesPage = styled.div`
+import styled from "styled-components";
+import StyledHeader from "../components/Header/index.js";
+import FavoritesList from "../components/Favoritelist/index.js";
+
+const StyledMain = styled.main`
   padding-bottom: 60px;
-`;
-
-const StyledCard = styled.div`
-  border: 3px solid grey;
-  border-radius: 4px;
-  padding: 16px;
-  margin-bottom: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 
 const animals = [...cats, ...dogs, ...smallanimals];
@@ -32,7 +29,7 @@ export default function FavoritesPage() {
     }
   }, []);
 
-  const handleFavorite = (id) => {
+  const handleBookmark = (id) => {
     let newFavorites;
     if (favorites.includes(id)) {
       newFavorites = favorites.filter((favId) => favId !== id);
@@ -49,39 +46,16 @@ export default function FavoritesPage() {
   );
 
   return (
-    <StyledFavoritesPage>
+    <StyledMain>
       <StyledHeader />
 
-      <ul>
-        {favoriteAnimals.map((animal) => (
-          <StyledCard key={animal.id}>
-            <h3>{animal.name}</h3>
-            <Link href={`/moredetails/${animal.id}`}>
-              <p>
-                <Image
-                  src={animal.image}
-                  alt={animal.name}
-                  width={375}
-                  height={375}
-                />
-              </p>
-            </Link>
-            <p>Alter: {animal.age}</p>
-            <p>Geschlecht: {animal.gender}</p>
-            <p>Rasse: {animal.breed}</p>
-            <p>Standort: {animal.location}</p>
-            <BookmarkButton
-              itemId={animal.id}
-              isBookmarked={favorites.includes(animal.id)}
-              onBookmark={() => handleFavorite(animal.id)}
-            />
-            <Link href={`/moredetails/${animal.id}`}>
-              <button>Mehr Details..</button>
-            </Link>
-          </StyledCard>
-        ))}
-      </ul>
+      <FavoritesList
+        items={favoriteAnimals}
+        onBookmark={handleBookmark}
+        isBookmarked={(id) => favorites.includes(id)}
+      />
+
       <Footer />
-    </StyledFavoritesPage>
+    </StyledMain>
   );
 }
