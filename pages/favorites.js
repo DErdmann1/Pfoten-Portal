@@ -17,6 +17,10 @@ const StyledMain = styled.main`
   align-items: center;
 `;
 
+const StyledH1 = styled.h1`
+  margin-bottom: 1px;
+`;
+
 const animals = [...cats, ...dogs, ...smallanimals];
 
 export default function FavoritesPage() {
@@ -48,7 +52,7 @@ export default function FavoritesPage() {
   return (
     <StyledMain>
       <StyledHeader />
-
+      <StyledH1>Favoriten</StyledH1>
       <FavoritesList
         items={favoriteAnimals}
         onBookmark={handleBookmark}
