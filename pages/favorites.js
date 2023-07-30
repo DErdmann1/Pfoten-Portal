@@ -3,21 +3,60 @@ import Link from "next/link";
 import cats from "../lib/cat_data.js";
 import dogs from "../lib/dog_data.js";
 import smallanimals from "../lib/smallanimals_data.js";
-import StyledHeader from "../components/Header";
-import styled from "styled-components";
 import Footer from "../components/Footer/index.js";
 import Image from "next/image";
-import BookmarkButton from "../components/Bookmarkbutton";
 
-const StyledFavoritesPage = styled.div`
+import styled from "styled-components";
+import StyledHeader from "../components/Header/index.js";
+
+const StyledMain = styled.main`
   padding-bottom: 60px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 
-const StyledCard = styled.div`
-  border: 3px solid grey;
+const StyledImage = styled(Image)`
+  display: block;
+  margin: 5px auto;
+  border: 2px solid #ccc;
+  border-radius: 10px;
+  max-width: 300px;
+  max-height: 300px;
+`;
+
+const ListItem = styled.li`
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding-left: 25px;
+  padding-right: 25px;
+  margin-top: 30px;
+  margin-bottom: 60px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+`;
+
+const ButtonContainer = styled.div`
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+  margin-bottom: 35px;
+`;
+
+const BookmarkBtn = styled.button`
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+`;
+
+const MoreDetailsBtn = styled.button`
+  background-color: #f0f0f0;
+  color: #333;
+  border: none;
   border-radius: 4px;
-  padding: 16px;
-  margin-bottom: 16px;
+  padding: 8px 16px;
+  cursor: pointer;
 `;
 
 const animals = [...cats, ...dogs, ...smallanimals];
@@ -32,7 +71,7 @@ export default function FavoritesPage() {
     }
   }, []);
 
-  const handleFavorite = (id) => {
+  const handleBookmark = (id) => {
     let newFavorites;
     if (favorites.includes(id)) {
       newFavorites = favorites.filter((favId) => favId !== id);
@@ -49,16 +88,16 @@ export default function FavoritesPage() {
   );
 
   return (
-    <StyledFavoritesPage>
+    <StyledMain>
       <StyledHeader />
 
       <ul>
         {favoriteAnimals.map((animal) => (
-          <StyledCard key={animal.id}>
+          <ListItem key={animal.id}>
             <h3>{animal.name}</h3>
             <Link href={`/moredetails/${animal.id}`}>
               <p>
-                <Image
+                <StyledImage
                   src={animal.image}
                   alt={animal.name}
                   width={375}
@@ -70,18 +109,20 @@ export default function FavoritesPage() {
             <p>Geschlecht: {animal.gender}</p>
             <p>Rasse: {animal.breed}</p>
             <p>Standort: {animal.location}</p>
-            <BookmarkButton
-              itemId={animal.id}
-              isBookmarked={favorites.includes(animal.id)}
-              onBookmark={() => handleFavorite(animal.id)}
-            />
-            <Link href={`/moredetails/${animal.id}`}>
-              <button>Mehr Details..</button>
-            </Link>
-          </StyledCard>
+            <ButtonContainer>
+              <BookmarkBtn
+                itemId={animal.id}
+                isBookmarked={favorites.includes(animal.id)}
+                onBookmark={() => handleBookmark(animal.id)}
+              />
+              <Link href={`/moredetails/${animal.id}`}>
+                <MoreDetailsBtn>Mehr Details..</MoreDetailsBtn>
+              </Link>
+            </ButtonContainer>
+          </ListItem>
         ))}
       </ul>
       <Footer />
-    </StyledFavoritesPage>
+    </StyledMain>
   );
 }
