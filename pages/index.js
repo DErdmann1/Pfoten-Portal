@@ -24,7 +24,7 @@ const Button = styled.a`
   font-weight: bold;
   font-size: 12px;
   cursor: pointer;
-  margin-top: 30px;
+  margin-top: 20px;
   width: 160px;
   height: 140px;
   text-align: center;

@@ -16,6 +16,48 @@ const StyledH1 = styled.h1`
 
 const Container = styled.div`
   padding-bottom: 60px;
+  margin: 0 35px;
+`;
+
+const StyledImage = styled(Image)`
+  display: block;
+  margin: 0 auto;
+  border: 2px solid #ccc;
+  border-radius: 10px;
+`;
+
+const StyledForm = styled.form`
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 20px;
+`;
+
+const StyledLabel = styled.label`
+  font-size: 18px;
+`;
+
+const StyledInput = styled.input`
+  font-size: 18px;
+  padding: 8px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+`;
+
+const StyledTextarea = styled.textarea`
+  font-size: 18px;
+  padding: 8px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+`;
+
+const SubmitButton = styled.button`
+  font-size: 18px;
+  padding: 8px 16px;
+  border-radius: 4px;
+  border: none;
+  background-color: #f0f0f0;
+  cursor: pointer;
 `;
 
 export default function MoreDetailsPage() {
@@ -75,84 +117,82 @@ export default function MoreDetailsPage() {
   }
 
   return (
-    <Container>
+    <>
       <Header showSearch={false} />
-      <StyledH1>{animal.name}</StyledH1>
-      <Image
-        src={animal.image}
-        alt={animal.name}
-        width={animal.imageWidth}
-        height={animal.imageHeight}
-      />
-      <p>Alter: {animal.age}</p>
-      <p>Geschlecht: {animal.gender}</p>
-      <p>Rasse: {animal.breed}</p>
-      <p>Ort: {animal.location}</p>
-      <p>{animal.infoText}</p>
+      <Container>
+        <StyledH1>{animal.name}</StyledH1>
+        <StyledImage
+          src={animal.image}
+          alt={animal.name}
+          width={animal.imageWidth}
+          height={animal.imageHeight}
+        />
+        <p>Alter: {animal.age}</p>
+        <p>Geschlecht: {animal.gender}</p>
+        <p>Rasse: {animal.breed}</p>
+        <p>Ort: {animal.location}</p>
+        <p>{animal.infoText}</p>
 
-      <BookmarkButton
-        itemId={animal.id}
-        isBookmarked={isBookmarked}
-        onBookmark={handleBookmark}
-      />
+        <BookmarkButton
+          itemId={animal.id}
+          isBookmarked={isBookmarked}
+          onBookmark={handleBookmark}
+        />
 
-      {isSubmitted ? (
-        <p>
-          Vielen Dank für Ihre Nachricht! Unser Vermittlungsteam wird sich
-          schnellstmöglich mit Ihnen in Verbindung setzen.
-        </p>
-      ) : (
-        <form onSubmit={handleSubmit}>
-          <label>
-            Name:
-            <input
-              type="text"
-              name="name"
-              value={formData.name}
-              onChange={handleChange}
-              required
-            />
-          </label>
-          <br />
-          <label>
-            E-Mail:
-            <input
-              type="email"
-              name="email"
-              value={formData.email}
-              onChange={handleChange}
-              required
-            />
-          </label>
-          <br />
-          <label>
-            Betreff:
-            <input
-              type="text"
-              name="subject"
-              value={formData.subject}
-              onChange={handleChange}
-              required
-            />
-          </label>
-          <br />
-          <label>
-            Nachricht:
-            <textarea
-              name="message"
-              value={formData.message}
-              onChange={handleChange}
-              required
-            ></textarea>
-          </label>
-          <br />
-          <button type="submit">Senden</button>
-        </form>
-      )}
-      <br />
-      <Link href="/">Zurück</Link>
-      <br />
+        {isSubmitted ? (
+          <p>
+            Vielen Dank für Ihre Nachricht! Unser Vermittlungsteam wird sich
+            schnellstmöglich mit Ihnen in Verbindung setzen.
+          </p>
+        ) : (
+          <StyledForm onSubmit={handleSubmit}>
+            <StyledLabel>
+              Name:
+              <StyledInput
+                type="text"
+                name="name"
+                value={formData.name}
+                onChange={handleChange}
+                required
+              />
+            </StyledLabel>
+            <StyledLabel>
+              E-Mail:
+              <StyledInput
+                type="email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+                required
+              />
+            </StyledLabel>
+            <StyledLabel>
+              Betreff:
+              <StyledInput
+                type="text"
+                name="subject"
+                value={formData.subject}
+                onChange={handleChange}
+                required
+              />
+            </StyledLabel>
+            <StyledLabel>
+              Nachricht:
+              <StyledTextarea
+                name="message"
+                value={formData.message}
+                onChange={handleChange}
+                required
+              ></StyledTextarea>
+            </StyledLabel>
+            <SubmitButton type="submit">Senden</SubmitButton>
+          </StyledForm>
+        )}
+        <br />
+        <Link href="/">Zurück</Link>
+        <br />
+      </Container>
       <Footer />
-    </Container>
+    </>
   );
 }
