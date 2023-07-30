@@ -16,7 +16,7 @@ const StyledH1 = styled.h1`
 
 const Container = styled.div`
   padding-bottom: 60px;
-  margin: 0 35px;
+  margin: 0 20px;
 `;
 
 const StyledImage = styled(Image)`
@@ -31,10 +31,16 @@ const StyledForm = styled.form`
   flex-direction: column;
   gap: 10px;
   margin-top: 20px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
 `;
 
 const StyledLabel = styled.label`
+  display: flex;
+  flex-direction: column;
   font-size: 18px;
+  margin-bottom: 10px;
 `;
 
 const StyledInput = styled.input`
@@ -42,6 +48,7 @@ const StyledInput = styled.input`
   padding: 8px;
   border-radius: 4px;
   border: 1px solid #ccc;
+  height: 40px;
 `;
 
 const StyledTextarea = styled.textarea`
@@ -53,7 +60,7 @@ const StyledTextarea = styled.textarea`
 
 const SubmitButton = styled.button`
   font-size: 18px;
-  padding: 8px 16px;
+  padding: 8px, 16px;
   border-radius: 4px;
   border: none;
   background-color: #f0f0f0;
@@ -127,10 +134,10 @@ export default function MoreDetailsPage() {
           width={animal.imageWidth}
           height={animal.imageHeight}
         />
-        <p>Alter: {animal.age}</p>
-        <p>Geschlecht: {animal.gender}</p>
-        <p>Rasse: {animal.breed}</p>
-        <p>Ort: {animal.location}</p>
+        <p>Alter:{animal.age}</p>
+        <p>Geschlecht:{animal.gender}</p>
+        <p>Rasse:{animal.breed}</p>
+        <p>Ort:{animal.location}</p>
         <p>{animal.infoText}</p>
 
         <BookmarkButton
