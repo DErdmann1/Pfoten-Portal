@@ -167,9 +167,9 @@ export default function SmallAnimalsPage() {
             onChange={(e) => setLocationFilter(e.target.value)}
           >
             <option value="">Alle</option>
-            <option value="Tierheim 1">Tierheim Saarbrücken</option>
-            <option value="Tierheim 2">Tierheim Hamburg</option>
-            <option value="Tierheim 3">Tierheim Berlin</option>
+            <option value="Tierheim Saarbrücken">Tierheim Saarbrücken</option>
+            <option value="Tierheim Hamburg">Tierheim Hamburg</option>
+            <option value="Tierheim Berlin">Tierheim Berlin</option>
           </FilterOption>
           <button onClick={handleFilter}>Filter anwenden</button>
         </FilterContainer>
