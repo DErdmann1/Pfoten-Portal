@@ -8,7 +8,7 @@ Find and adopt your furry family member with this app. Explore a diverse selecti
 
 ### Deployment
 
-You can have a look at the last update of Pfoten-portal on Vercel: [DemoVersion](https://periotopia.vercel.app) <br>
+You can have a look at the last update of Pfoten-portal on Vercel: [DemoVersion](https://pfoten-portal.vercel.app) <br>
 Note: The App is optimized for mobile screen.
 
 ### Tech Stack
