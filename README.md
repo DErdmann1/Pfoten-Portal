@@ -1,6 +1,6 @@
 # Pfoten-Portal
 
-![App screens](./public/)
+![App screens](./public/capstone_pfotenportal.png)
 
 ## Capstone Project
 
