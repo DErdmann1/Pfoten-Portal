@@ -66,6 +66,10 @@ const SubmitButton = styled.button`
   cursor: pointer;
 `;
 
+const StyledH2 = styled.h2`
+  position: center;
+`;
+
 const StyledLink = styled(Link)`
   display: block;
   text-align: center;
@@ -157,7 +161,7 @@ export default function MoreDetailsPage() {
         >
           Zu Favoriten
         </BookmarkButton>
-
+        <StyledH2>Kontakt</StyledH2>
         {isSubmitted ? (
           <p>
             Vielen Dank für Ihre Nachricht! Unser Vermittlungsteam wird sich

@@ -1,37 +1,25 @@
-# New Next Project
+# Pfoten-portal
 
-This project was created from the neue fische `next` template.
+![App screens](./public/)
 
-You can [🔗 **use this template on CodeSandbox**](https://codesandbox.io/p/sandbox/github/neuefische/web-exercises/tree/main/templates/next?file=/README.md) or locally by running this command in your Terminal:
+## Capstone Project of the Web Development bootcamp at neuefische
 
-```bash
-npx -y ghcd@latest neuefische/web-exercises/tree/main/templates/next my-app -i
-```
+Find and adopt your furry family member with this app. Explore a diverse selection of dogs, cats, and small animals from shelters and rescues. Filter by age, gender, and location. Bookmark favorites, view profiles, and make a seamless adoption. My mission is to connect shelters with loving families and promote responsible adoptions.
 
-## Development
+### Deployment
 
-### Local Development
+You can have a look at the last update of Periotopia on Vercel: [DemoVersion](https://periotopia.vercel.app) <br>
+Note: The App is optimized for mobile screen.
 
-To work locally, please install the dependencies using `npm i` first.
+### Tech Stack
 
-Run `npm run dev` to start a development server and open the displayed URL in a browser.
+- React
+- React Hooks
+- Next.js
+- styled-components
 
-Use `npm run test` to run the tests.
+### Project Setup
 
-### CodeSandbox Cloud
-
-Select the "Preview: 3000" tab to view this project.
-
-Select the "Tests: logs" tab to view the tests.
-
-> The `npm run dev` and `npm run test` scripts run automatically.
-
-### Scripts
-
-You can use the following commands:
-
-- `npm run dev` to start a development server
-- `npm run build` to build the project
-- `npm run start` to start a production server
-- `npm run test` to run the tests
-- `npm run lint` to run the linter
+- Clone this repository
+- Install all dependencies using `npm install`
+- Run app in development mode using `npm run dev`, and open [http://localhost:3000/](http://localhost:3000/)
